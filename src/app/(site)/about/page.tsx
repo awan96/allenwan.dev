@@ -27,7 +27,7 @@ export const metadata: Metadata = pageMeta({
 const EXPERIENCE = [
   { years: "2025 – now", role: "Senior Software Engineer", org: "Google – AI Personalization", note: "LLM personalization: memory, multi-turn, and personal context, across all AI Mode and AI Overview queries." },
   { years: "2021 – 2025", role: "Software Engineer III", org: "Google – Shopping Search Features", note: "Full-stack web development: refinements, result quality, and page layout." },
-  { years: "2019 – 2021", role: "Software Engineer II", org: "Google – Shopping Mobile App", note: "Full-stack iOS development: helped build the Shopping mobile app from the ground up, on the client and its presentation server." },
+  { years: "2019 – 2021", role: "Software Engineer II", org: "Google – Shopping Mobile App", note: "Full-stack iOS development: helped build the Shopping mobile app from the ground up, on the client and its server." },
 ];
 
 // Folded into one row under the jobs, which still names each company, until
