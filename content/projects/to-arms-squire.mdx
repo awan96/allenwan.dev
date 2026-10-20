@@ -1,0 +1,98 @@
+---
+title: "To Arms, Squire!"
+summary: "A browser RPG I built from scratch, with card-driven duels and bosses that learn your habits."
+role: "Design, engine, art"
+year: "2026"
+stack: ["TypeScript", "Next.js", "React", "Zustand", "Supabase"]
+links:
+  play: "/game"
+icon: icon_sword
+cover: duel
+featured: true
+order: 1
+filler: false
+---
+
+To Arms, Squire! is a role-playing game that runs in the browser. I built everything in it from scratch: the combat engine, the boss AI, the world, the pixel art, and the tools I make them with. You play a squire whose knight rode out and never came back, and you set out to earn your own name. The road ends at the old seals under the realm. The longer you take, the harder the world gets, and when a run ends, the world is shuffled and dealt again.
+
+You can play it right here, with no sign-up. The game saves as you play, tied to this browser.
+
+<Figure src="/projects/to-arms-squire/duel.webp" url="allenwan.dev/game" frame="browser" ratio="16/9" wide alt="A duel mid-bout: three cards committed, the foe's three still face down" caption="A duel mid-bout. My three cards are on the table; the foe's are still face down." />
+
+## The duel
+
+Fights are played with cards. Each bout, you lay three action cards on the table in order, choosing from attack, block, dodge, catch your breath, and the stronger techniques your build has earned. The foe commits three of its own face down, though a boss shows you its first. Then the cards turn over one round at a time, and each pair resolves against the other.
+
+Every fight runs on three bars. Health is how many mistakes you can afford. Stamina pays for your cards, and catching your breath buys it back; if you can't pay, you lose the round and stand open. Posture soaks up pressure, and when it hits zero, your stance breaks and you lose the next round. Most decisions come down to which bar you're willing to spend.
+
+<Gallery>
+  <Figure src="/projects/to-arms-squire/map.webp" ratio="4/3" alt="A stretch of the world map in square tiles: castles and villages with their names, swords marking fights, forests, hills and water, the squire's pawn near the middle, and dark tiles not yet explored" caption="The world map. The same places come back every run, dealt into new spots." />
+  <Figure src="/projects/to-arms-squire/card.webp" ratio="4/3" alt="Heavy Attack in the hand between Breath and Balanced Stance, with 24 SP in its corner, 12 damage in the middle, and its odds underneath" caption="Heavy Attack up close. The price is in the top corner, and the damage is the big number in the middle." />
+</Gallery>
+
+I designed the cards to read like playing cards. The price sits in the corner, and the payoff is the one big number in the middle: the damage it will do, the guard it raises, or your odds of dodging this foe's swing. The small print lists the odds and any other effects the card triggers. Rules text names a status once, and hovering the name anywhere shows its definition from one shared glossary.
+
+<Callout kind="decision" title="Card numbers come from the engine">
+
+No number on a card is typed in by hand. The card face calls the same functions the fight resolver uses, with the fight's live state and that card swapped in, so when gear, a buff, or a tarot card changes the math, the card already shows it. Hand-typed numbers would have been faster to build, but they go out of date the first time anything is retuned.
+
+</Callout>
+
+## How the bosses play
+
+Common foes draw from a weighted hand of moves, and elites play the solver described below. Bosses and minibosses choose their cards in three steps each bout:
+
+1. **Propose.** The boss's script offers a few in-character lines. The Graven Warden holds his wall; in his second phase, he parries if you've been swinging at him and presses if you haven't.
+2. **Score.** A simulator runs each line through the real combat resolver against a model of what you tend to play, and drops any that score far below the best.
+3. **Choose.** A weighted shuffle picks among what's left, so the boss is never fully predictable.
+
+I wanted boss fights to be something you can learn, so the AI only reacts to what has been revealed. It never peeks at your face-down cards, which is why the game can show you a boss's opening move before you commit. It can change its later cards mid-bout, but only in response to cards already turned over.
+
+<Callout kind="lesson" title="Solving each bout made the bosses passive">
+
+My first boss AI solved each bout as a small zero-sum game. It was very good at not losing, and against a strong player, the math said to hide. Against a heavy hitter, Brother Ilm attacked in at most 3% of his turns, and no aggression setting I tried changed that. The elite foes still play the solver directly. In the boss AI, it's one source of proposed lines, weighted highest for the bosses meant to turtle.
+
+</Callout>
+
+## Sprites stored as text
+
+Every sprite in the game is a small grid of characters in a TypeScript file. A dot is a clear pixel, `o` is the outline, and the letters A to H are color roles, like metal or wood, that each sprite maps to the palette. Recoloring a sprite is a one-line change, and a redrawn sprite shows up in a code diff like any other change. One shared renderer draws them all as crisp SVG. There are four libraries: the game's 12×12 interface icons, its fighters, its tarot art, and this site's own sprites, including the tree on the home page.
+
+The figures below are drawn live from those grids.
+
+<SpriteShowcase caption="The squire and the five main bosses, drawn from the game's sprite data at a whole-number scale. The bosses are flipped to face the squire, as they are on the duel stage.">
+  <Sprite name="me_combat" label="The squire" />
+  <Sprite name="boss_graven_warden" label="Graven Warden" flip />
+  <Sprite name="boss_spirit_of_adrix" label="Adrix" flip />
+  <Sprite name="boss_brother_ilm" label="Brother Ilm" flip />
+  <Sprite name="boss_dark_beast" label="Dark Beast" flip />
+  <Sprite name="boss_ulgar" label="Ulgar" flip />
+</SpriteShowcase>
+
+I draw and edit most of them in a [sprite editor](/projects/sprite-editor) I built for the job, which saves straight back into those files.
+
+## Balance
+
+Every number in the game affects the others, so I don't tune it by feel alone. A headless simulator plays the real combat engine with scripted players: thirteen builds, from heavy hitters to casters, each played twice, once with ideal gear and once with the gear a real run tends to find. One pass is thousands of fights against the five main bosses. I aim for the median build to win 20 to 40 percent of the time.
+
+<Callout kind="lesson" title="The simulated player was too weak">
+
+For a while, the bosses kept getting easier, and the simulator said that was right. The scripted player was leveled far ahead of real players, but it was missing the passive skills a real run collects, and those were worth more than the levels. It played weaker than a real person, so I had been tuning the bosses down for a player who didn't exist. Now the builds follow the pace of real runs, and I read traces of actual fights before I trust an average.
+
+</Callout>
+
+An integrity suite checks the content against its own rules. Every tarot card is accounted for, the price a dialog quotes is the price you pay, no description hard-codes a number its effect owns, and no text a player sees uses internal terms. It takes about ten seconds to run, so I run it all the time.
+
+<Stats>
+  <Stat value="78" label="tarot cards" />
+  <Stat value="26" label="simulated builds" />
+  <Stat value="600+" label="automated checks" />
+</Stats>
+
+## The arena
+
+When a run ends, its knight can stand in the arena as a champion. Other players duel it, and the champion is played by the same boss AI, which already has a model of the challenger's habits. The server hands out the random seed with the opponent and only records a result after replaying the whole fight from that seed, so every recorded result is a fight the rules actually produced. Ratings use Glicko-2, so a new champion's rating settles as it fights.
+
+## What's next
+
+Each of the tarot deck's twenty-two major arcana now has its own illustration and plays by a rule no other card shares. Next is a harder ladder for players who have won a run. It's built, and it opens after I playtest it myself.

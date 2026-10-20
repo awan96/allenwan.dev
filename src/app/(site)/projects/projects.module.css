@@ -1,0 +1,22 @@
+/* src/app/(site)/projects/projects.module.css */
+
+.main {
+  padding-bottom: var(--spacing-section);
+}
+
+.flagship {
+  display: flex;
+  /* Room for the resting shadow before the grid starts. */
+  margin-bottom: 2rem;
+}
+
+.grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+  gap: 1.5rem 1.25rem;
+}
+
+.grid > li {
+  display: flex;
+}

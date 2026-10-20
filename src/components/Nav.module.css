@@ -1,0 +1,135 @@
+/* src/components/Nav.module.css */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: color-mix(in srgb, var(--color-bg) 93%, transparent);
+  border-bottom: var(--rule);
+  /* The prefix first: the CSS build keeps only the last of the two, and
+     Chrome ignores the prefixed one. */
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.skip {
+  position: absolute;
+  left: var(--gutter);
+  top: -100px;
+  z-index: 30;
+  padding: 8px 14px;
+  background: var(--color-text);
+  color: var(--color-bg);
+  font-size: 14px;
+}
+
+.skip:focus-visible {
+  top: 8px;
+}
+
+.nav {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0.85rem var(--gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-display);
+  font-weight: var(--weight-display);
+  font-size: 1.15rem;
+  line-height: 1;
+  color: var(--color-text);
+  transition: color 0.2s;
+  flex-shrink: 0;
+}
+
+.logo:hover {
+  color: var(--color-accent);
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.links {
+  list-style: none;
+  display: flex;
+  gap: 0.15rem;
+}
+
+.link {
+  position: relative;
+  display: block;
+  font-size: 14px;
+  color: var(--color-muted);
+  padding: 6px 11px 9px;
+  transition: color 0.15s;
+}
+
+.link:hover,
+.active {
+  color: var(--color-text);
+}
+
+.active {
+  font-weight: 500;
+}
+
+/* The pixel marker: a three-step caret, drawn in 2px "pixels", that rises
+   under the current page and peeks in on hover. Shape, not colour, says
+   "you are here". */
+.link::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -1px;
+  width: 10px;
+  height: 6px;
+  transform: translate(-50%, 4px);
+  opacity: 0;
+  transition: opacity 0.15s, transform 0.15s;
+  background:
+    linear-gradient(var(--color-accent), var(--color-accent)) 4px 0 / 2px 2px no-repeat,
+    linear-gradient(var(--color-accent), var(--color-accent)) 2px 2px / 6px 2px no-repeat,
+    linear-gradient(var(--color-accent), var(--color-accent)) 0 4px / 10px 2px no-repeat;
+}
+
+.link:hover::after {
+  opacity: 0.45;
+  transform: translate(-50%, 1px);
+}
+
+.active::after,
+.active:hover::after {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+@media (max-width: 640px) {
+  .nav {
+    padding: 0.7rem var(--gutter);
+    gap: 0.5rem;
+  }
+  .link {
+    font-size: 13px;
+    padding: 6px 7px 9px;
+  }
+}
+
+/* Narrow phones: the name and all four links share one row. */
+@media (max-width: 460px) {
+  .links {
+    gap: 0;
+  }
+  .link {
+    padding: 6px 6px 9px;
+  }
+}

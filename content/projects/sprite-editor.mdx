@@ -1,0 +1,54 @@
+---
+title: "Sprite Editor"
+summary: "A pixel editor for the sprites in the game and on this site. It saves straight into the source code."
+role: "Design and build"
+year: "2026"
+stack: ["React", "TypeScript", "Next.js", "SVG"]
+links: {}
+icon: icon_pencil
+featured: true
+order: 2
+filler: false
+---
+
+Every sprite in [To Arms, Squire!](/projects/to-arms-squire) and on this site is stored in the code as a grid of characters. That makes the art easy to version and recolor, and miserable to draw by typing, so I built an editor that paints the grid and writes it back into the source for me.
+
+<GridAnatomy name="sword" library="game-icons" caption="The game's sword icon, as it's stored and as it's drawn. Each letter is a role that the sprite maps to a color in the palette." />
+
+## Drawing and saving
+
+I pick a library (the game's icons, fighters, or tarot art, or the site's own sprites), load a sprite or start a blank one, and paint with the pencil, the fill, or the square. The game's libraries share one palette and the site has its own, and each sprite maps the letters A to H to any color in its palette. The canvas takes any size from 3×3 to 64×64, except in two libraries with fixed sizes: the game's icons are 12×12 because the interface is laid out for them, and the fighters are 28×36 so they all stand on the same ground line.
+
+**Save** writes the sprite into the library's file, and **Copy code** gives me the entry to paste by hand. The dev server picks up the change and hot-reloads, so a moment later the sprite is on the page, in the editor's own list and anywhere the game draws it.
+
+<Figure src="/projects/sprite-editor/editor.webp" url="localhost:3000/sprite-editor" frame="browser" ratio="3/2" wide alt="The sprite editor with Adrix loaded from the fighters library: the canvas and tools on the left, and the color roles, previews, and generated code on the right" caption="The editor with Adrix loaded. The canvas and tools are on the left; the color roles, live previews, and generated code are on the right." />
+
+## Saving safely
+
+Save writes to source files, so a bad save could break the build. The save route checks everything before it writes:
+
+- It only runs on the dev server. Anywhere else it returns a 404, and the Save button isn't shown.
+- The editor never names a file. It sends a library id, and the server looks up the path in its own registry.
+- Sprite names can only use lowercase letters, digits, and underscores, which also stops a crafted name from injecting code.
+- The grid has to be a rectangle, 3 to 64 pixels on a side, using only the characters the format allows, and at the fixed size where a library has one.
+- Every letter in the grid needs a color from that library's palette, or the save is refused with the reason.
+
+Then the route finds its two blocks in the file, one for grids and one for color roles, inserts or replaces the entry by its exact name, and keeps both blocks in alphabetical order. If the file isn't in the shape it expects, it refuses to write instead of guessing.
+
+<Callout kind="tradeoff" title="Two formatters, kept identical">
+
+The editor formats the code it shows, and the save route formats the code it writes. They live in different places, so I keep the two byte-for-byte identical, each with a comment pointing at the other. Keeping them in sync is manual work, but it means re-saving a sprite I didn't change leaves the file untouched, with nothing in the diff.
+
+</Callout>
+
+## Details
+
+- **Undo** works per stroke. One drag is one undo step, and painting a pixel the color it already is adds nothing.
+- **Size fields** apply when I finish typing, so the "2" on the way to "24" never crops the canvas.
+- **Fill** forgives a one-pixel gap in an outline. When a fill would run out to the edge of the canvas, it tries again with one-pixel gaps treated as closed, and keeps that result if it stays inside.
+- **Shift** moves the whole sprite a pixel at a time, wrapping at the edges, and **flip** mirrors it either way.
+- **Previews** show the sprite at a small and a large whole-number scale, in grayscale to check that it reads by lightness and not only by hue, and, for the game's icons, in the muted palette the world map uses.
+
+## What's next
+
+A mirror mode for symmetric sprites, keyboard shortcuts for the tools, and PNG import that snaps each pixel to the nearest palette color.

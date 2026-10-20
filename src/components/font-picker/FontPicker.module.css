@@ -1,0 +1,344 @@
+/* src/components/font-picker/FontPicker.module.css
+   The picker's own type is the system face, so it never reads as a
+   candidate; its colours are the site's, so it follows dark mode. */
+
+.app {
+  display: grid;
+  grid-template-columns: 22rem minmax(0, 1fr);
+  height: 100dvh;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--color-text);
+}
+
+.app kbd {
+  display: inline-block;
+  min-width: 1.6em;
+  padding: 0 0.35em;
+  border: 1px solid var(--color-border);
+  border-bottom-width: 2px;
+  background: var(--color-surface);
+  font: inherit;
+  font-size: 12px;
+  text-align: center;
+}
+
+.app button,
+.app select,
+.app input {
+  font: inherit;
+  color: inherit;
+}
+
+.app select,
+.app input {
+  border: 1.5px solid var(--color-border);
+  background: var(--color-surface);
+  border-radius: 0;
+  padding: 5px 8px;
+  min-width: 0;
+}
+
+.app button {
+  cursor: pointer;
+}
+
+/* ---- Sidebar ---- */
+
+.side {
+  overflow-y: auto;
+  border-right: var(--rule);
+  /* Room at the foot for Next's dev badge, which sits in this corner. */
+  padding: 1.1rem 1rem 4.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.head {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.title {
+  font-family: inherit;
+  font-size: 1.1rem;
+  font-weight: 650;
+}
+
+.help,
+.note {
+  color: var(--color-muted);
+  font-size: 13px;
+}
+
+.label {
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-bottom: 0.55rem;
+}
+
+.pairings {
+  list-style: none;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.pairing {
+  width: 100%;
+  display: grid;
+  gap: 0.15rem;
+  padding: 0.6rem 0.75rem 0.65rem;
+  text-align: left;
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+}
+
+.pairing:hover {
+  border-color: var(--color-text);
+}
+
+/* The one in the frame: ink edge and the site's green lift. */
+.pairing[aria-pressed="true"] {
+  border: var(--rule);
+  box-shadow: var(--shadow-lift);
+}
+
+.pairingHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.pairingName {
+  font-size: 1.5rem;
+  line-height: 1.15;
+}
+
+.top {
+  flex-shrink: 0;
+  padding: 1px 6px;
+  border: 1.5px solid currentColor;
+  font-size: 10.5px;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.pairingFonts {
+  font-size: 12px;
+  color: var(--color-muted);
+}
+
+.blurb {
+  margin-top: 0.3rem;
+  font-size: 13px;
+}
+
+.slots {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.slot {
+  display: grid;
+  grid-template-columns: 5rem minmax(0, 1fr);
+  gap: 0.35rem 0.6rem;
+  align-items: center;
+}
+
+.slotName {
+  font-weight: 600;
+}
+
+.knobs {
+  grid-column: 2;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.weight {
+  width: 5.2rem;
+}
+
+.stepper {
+  display: inline-flex;
+  align-items: stretch;
+  border: 1.5px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.stepper button {
+  width: 1.9rem;
+  border: 0;
+  background: transparent;
+  font-size: 15px;
+  line-height: 1;
+}
+
+.stepper button:hover {
+  background: var(--color-accent-light);
+}
+
+.stepper output {
+  min-width: 3.3rem;
+  padding: 4px 0;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  border-inline: 1px solid var(--color-border);
+}
+
+.slot .note {
+  grid-column: 2;
+  font-size: 12px;
+}
+
+.error {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.search {
+  width: 100%;
+  margin-bottom: 0.45rem;
+}
+
+.useFor {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 13px;
+}
+
+.useFor button {
+  padding: 3px 9px;
+  border: 1.5px solid var(--color-text);
+  background: var(--color-surface);
+}
+
+.useFor button:hover {
+  background: var(--color-accent-light);
+}
+
+.foot {
+  margin-top: auto;
+  display: grid;
+  gap: 0.6rem;
+  padding-top: 1rem;
+  border-top: 1.5px solid var(--color-border);
+}
+
+.summary {
+  font-size: 13px;
+}
+
+.copy {
+  justify-self: start;
+  padding: 7px 14px;
+  border: var(--rule);
+  background: var(--color-accent);
+  color: var(--color-bg) !important;
+  font-weight: 600;
+}
+
+.copy:hover {
+  box-shadow: var(--shadow-rest);
+}
+
+/* ---- Preview ---- */
+
+.preview {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: color-mix(in srgb, var(--color-text) 7%, var(--color-bg));
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.9rem;
+  padding: 0.6rem 0.9rem;
+  border-bottom: var(--rule);
+  background: var(--color-bg);
+}
+
+.seg {
+  display: inline-flex;
+  border: 1.5px solid var(--color-text);
+}
+
+.seg button {
+  padding: 4px 10px;
+  border: 0;
+  background: transparent;
+}
+
+.seg button + button {
+  border-left: 1.5px solid var(--color-text);
+}
+
+.seg button[aria-pressed="true"] {
+  background: var(--color-text);
+  color: var(--color-bg);
+}
+
+.status {
+  font-size: 13px;
+  color: var(--color-muted);
+}
+
+.hold {
+  margin-left: auto;
+  padding: 4px 12px;
+  border: 1.5px solid var(--color-text);
+  background: var(--color-surface);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+}
+
+.hold[aria-pressed="true"] {
+  background: var(--color-text);
+  color: var(--color-bg);
+}
+
+.stage {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.frame {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: var(--color-bg);
+  transition: opacity 0.12s;
+}
+
+/* Hidden while a page loads, so it never shows in the wrong fonts. */
+.frame[data-covered="true"] {
+  opacity: 0;
+}
+
+.phone .frame {
+  flex: 0 0 390px;
+  width: 390px;
+  height: auto;
+  margin: 1rem 0;
+  border: var(--rule);
+  box-shadow: var(--shadow-rest);
+}

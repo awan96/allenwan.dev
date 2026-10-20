@@ -1,0 +1,37 @@
+/* src/components/project/Stamp.module.css
+   The inline stamp: the stack stamps' look (ui.module.css .stamp), sized
+   to sit inside a line of prose or a heading. */
+
+.stamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  vertical-align: 0.1em;
+  margin: 0 0.2em;
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.5;
+  color: var(--color-accent);
+  border: 1.5px solid currentColor;
+  padding: 1px 7px;
+  transform: rotate(-1deg);
+  -webkit-mask-image: var(--stamp-mask);
+  mask-image: var(--stamp-mask);
+  -webkit-mask-size: 90px 36px;
+  mask-size: 90px 36px;
+  white-space: nowrap;
+}
+
+/* A heading's stamp keeps the label size, not the heading's. */
+:is(h1, h2, h3) .stamp {
+  font-weight: 500;
+}
+
+.glyph {
+  width: 0.75em;
+  height: 0.9em;
+  display: block;
+}

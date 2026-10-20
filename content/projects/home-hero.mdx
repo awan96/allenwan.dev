@@ -1,0 +1,88 @@
+---
+title: "Home Page Hero"
+summary: "The pixel scene at the top of this site. It opens on the visitor's own time of day, and scrolling runs its clock forward to the next sky."
+role: "Design and build"
+year: "2026"
+stack: ["TypeScript", "React", "Canvas 2D", "CSS"]
+links:
+  live: "/"
+icon: icon_tree
+cover: /projects/home-hero/cover.webp
+featured: false
+order: 3
+filler: false
+---
+
+The home page opens on a pixel diorama, a tree on an empty field with one apple you can pick, under a sky in five bands that follows the visitor's own clock. Scrolling pushes that clock forward to the next sky while the scene holds still, so a visit that lands on a sunset ends under the night sky.
+
+<Figure src="/projects/home-hero/rests.webp" wide alt="The hero in its four resting skies: pink dawn with the sun just over the hills, pale blue day with the sun high, purple dusk with the sun half behind the hills, and navy night with the moon, stars, and fireflies" caption="Each sky's resting picture, the frame it settles on once it is fully in. Dawn rests at 8:00, day at 12:00, dusk at 18:00, and night at 22:00. The sun and moon follow the hour." />
+
+## How it's drawn
+
+Every pixel stays square. The scene is drawn at its own small size and scaled up by a whole number. The parts that never move are drawn once per sky, the rest redraws only while the scene is on screen, and nothing moves under reduced motion.
+
+There's no flash of the wrong sky on load. Each sky's band and headline colors live in CSS, and the page reads the visitor's clock before anything paints.
+
+The headline needs clear sky behind it. The bands meet in short checkered seams, and a seam behind a line of text reads like a zipper, so the seams sit above and below the text box. Stars stay out of the box, clouds stay above it where there's room, and the body text holds 4.5:1 against every band and cloud that can sit behind it.
+
+## Hold, then let go
+
+Scroll, and the scene pins under the nav while the card for [my game](/projects/to-arms-squire) rises over it. Once the card is in place, the two scroll away together, the card just above the grass.
+
+The hours up to the next sky fit the hold exactly, so every scroll lands on that sky's resting picture as the scene lets go. The headline fades first, before the sky starts to turn.
+
+<Figure src="/projects/home-hero/scroll.webp" wide alt="Six frames of one scroll: the hero pinned under the nav as the game card rises over it, the day sky turning through a checker to golden, then to purple dusk with the sun setting as the card comes to rest above the grass" caption="One scroll from day's rest, 12:00 to 18:00. The sky holds for two frames, then checkers into a golden sky and on into dusk as the card lands." />
+
+<Callout kind="tradeoff" title="The scene is never covered">
+
+The alternative was pulling up a bottom sheet, designed like a sheet of paper with a torn top edge. However, sliding up over the pinned scene hid most of the change of sky. A see-through sheet didn't work either: in light mode the page's dark text went unreadable over dusk and night, and the sheet swallowed clicks on the apple. This setup keeps the whole time change in view, without any conflicts.
+
+</Callout>
+
+## The clock
+
+Four skies, resting at 8:00, 12:00, 18:00, and 22:00. I set those hours so the changes come during waking hours, which makes dawn and dusk four hours long, day six, and night ten. A sky is fully in at its resting hour and blends in over the two hours before, so a scroll is the same sky with the sun or moon on the move, then the blend at the end. Scroll back up and it rewinds.
+
+As the sky darkens, the stars come out, high ones first, then the fireflies, and the hearth on the game card glows brighter. The sun is up from 7:00 to 18:00 and the moon from 19:00 to 6:00. Both cross the sky in the same column, which is why one is always down before the other rises. The hills are drawn in front, so a setting disc sinks behind them.
+
+<Figure src="/projects/home-hero/day.svg" wide alt="A chart of the hero's sky over 24 hours: navy night, a dithered blend through golden to pink dawn, pale blue day, a blend through golden to purple dusk, and dusk dithering into night before 22:00, with the sun's arc from 7:00 to 18:00 and the moon's from 19:00 to 6:00 drawn over it" caption="The sky across 24 hours, the sun's path solid and the moon's dotted, with the resting hours marked. The bracket under 12:00 to 18:00 is one scroll from day's rest." />
+
+## The dither
+
+Every pixel stays in one sky's palette, so the skies don't fade. A pixel is dusk's purple or night's navy, and halfway to night means half the pixels are night, a checkerboard at the scene's pixel size. A 4×4 Bayer matrix decides which pixels flip first, so every step reads as an even texture, with no stripes. The band seams use the same pattern, and the clouds thin or gather pixel by pixel.
+
+<Figure src="/projects/home-hero/dither.svg" wide alt="The 4×4 Bayer tile numbered 0 to 15, with the eight lowest numbers turned to night, beside two rows of six patches of a dusk-to-night blend at 2, 4, 8, 12, 14, and 16 pixels of every 16: even textures in Bayer order, stripes in reading order" caption="The 4×4 tile the whole sky repeats, and six steps of dusk turning into night. In Bayer order every step is an even texture, and 8 of 16 is a checkerboard. Flipped in reading order, the same steps come in as stripes." />
+
+## Golden hour
+
+In light mode, day into dusk and night into dawn would be loud, their bands far apart in lightness. A fifth sky, golden hour, bridges them. Nothing rests on it. On the way into dusk or dawn, the old sky turns golden over the first hour and golden turns into the new sky over the second. That takes about 40 percent off the lightness gap in each blend's worst checker.
+
+It runs violet overhead, through coral, to gold at the hills. I tried three golden palettes, and this is the only one that still reads golden under a deuteranomaly simulation. The other two went gray-lavender and taupe.
+
+<Figure src="/projects/home-hero/sunset.webp" wide alt="Ten close-up tiles of the hero's sky near the sun: pale blue day checkering into coral, then coral checkering into purple dusk as the sun sinks behind the hills" caption="Sunset, close up, a quarter hour per tile from 16:00 to 18:00. The all-golden 17:00 frame closes the top row and opens the bottom one." />
+
+Sunrise is 7:00, the peak of dawn's golden hour, and sunset lands as dusk's resting picture arrives, so the light matches the sky. For the middle hour of each golden blend the sun wears golden's colors, a warm disc on the coral sky.
+
+<Callout kind="decision" title="The dither stays">
+
+The other answer to the loud blends was a sweep, the new sky arriving as a front with the dither only along its edge, dusk and night from the top and dawn and day from the horizon. With the checker held to one strip it measured calmer, but it moved like a curtain being drawn, and I like the dither better.
+
+</Callout>
+
+## Where a visit starts
+
+A visit never opens on a blend. Body text on a checker is hard to read (below), so the dither only ever shows while you scroll.
+
+<Figure src="/projects/home-hero/checker.webp" alt="The hero's headline and bio over a coral and blue checkerboard sky, the small text hard to read" caption="The headline pinned to 16:30, halfway from day to golden. The bio is where it fails." />
+
+A visit starts at the visitor's own time, held to the first hour or two of their sky. If every visit opened on the resting picture, a 19:14 visitor would get 18:00's sunset. A visit always starts at least three hours before the next sky's rest, or the next blend would arrive under the headline before it fades.
+
+<Callout kind="lesson" title="Crossing midnight">
+
+A sky whose hours cross midnight breaks a clock that ends every sky at midnight: the scroll into the next sky brings it in all at once, with no stars, and the real blend never runs. Dusk did exactly that the first time its hours crossed midnight. The clock now picks whichever sky started last, so any sky can cross, as night does. Whenever the start hours change, I scroll across midnight.
+
+</Callout>
+
+## What's next
+
+Parallax, if the scene feels flat once it's live. While the scene is pinned, the sky would drift down a few rows and the hills half as far, with the ground and the tree staying put under the card and the apple.

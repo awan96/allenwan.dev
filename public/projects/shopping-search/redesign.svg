@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 400" width="780" height="400" role="img" aria-labelledby="t">
+  <title id="t">The desktop shopping page before and after the redesign. Before, the results sit in a narrow column between empty space and a cluttered side column, the product grid is four across, and the web results have mixed thumbnails. After, the results column is wide, the product grid is five across, the web results share one thumbnail style, and there is no side column.</title>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" class="head"/>
+    </marker>
+  </defs>
+  <style>
+    :root { --ink: #1a1a18; --paper: #f6efdd; --accent: #2a5c45; --muted: #62625c; --soft: rgba(26,26,24,0.14); }
+    @media (prefers-color-scheme: dark) {
+      :root { --ink: #eeece6; --paper: #111110; --accent: #5aab80; --muted: #9c9c94; --soft: rgba(238,236,230,0.16); }
+    }
+    .paper { fill: var(--paper); }
+    .head { fill: var(--ink); }
+    .cap { font-family: "Sometype Mono", ui-monospace, Menlo, monospace; font-size: 15px; letter-spacing: 0.08em; text-transform: uppercase; fill: var(--muted); }
+    .tb  { font-family: "Karla", "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 17px; font-weight: 700; fill: var(--ink); }
+    .tm  { font-family: "Karla", "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 16px; fill: var(--muted); }
+    .win { fill: none; stroke: var(--ink); stroke-width: 2; }
+    .rule { stroke: var(--ink); stroke-width: 2; }
+    .dot { fill: var(--muted); }
+    .prod { fill: var(--accent); }
+    .soft { fill: var(--soft); }
+    .thumb { fill: var(--soft); stroke: var(--muted); stroke-width: 1.5; }
+    .other { fill: none; stroke: var(--muted); stroke-width: 2; stroke-dasharray: 5 4; }
+    .flow { fill: none; stroke: var(--ink); stroke-width: 2; marker-end: url(#arrow); }
+  </style>
+  <rect class="paper" x="0" y="0" width="780" height="400"/>
+
+  <text class="cap" x="40" y="40">The desktop shopping page, before and after the redesign</text>
+
+  <!-- ============ BEFORE ============ -->
+  <text x="40" y="84"><tspan class="tb">Before</tspan><tspan class="tm" dx="10">four across, with a side column</tspan></text>
+  <rect class="win" x="40" y="100" width="300" height="262" rx="6"/>
+  <line class="rule" x1="40" y1="124" x2="340" y2="124"/>
+  <circle class="dot" cx="56" cy="112" r="3.5"/><circle class="dot" cx="68" cy="112" r="3.5"/><circle class="dot" cx="80" cy="112" r="3.5"/>
+  <!-- a wide empty band on the left, then a narrow results column, four across -->
+  <rect class="prod" x="118" y="140" width="30" height="30"/><rect class="prod" x="156" y="140" width="30" height="30"/><rect class="prod" x="194" y="140" width="30" height="30"/><rect class="prod" x="232" y="140" width="30" height="30"/>
+  <rect class="soft" x="118" y="176" width="24" height="4"/><rect class="soft" x="156" y="176" width="24" height="4"/><rect class="soft" x="194" y="176" width="24" height="4"/><rect class="soft" x="232" y="176" width="24" height="4"/>
+  <rect class="prod" x="118" y="194" width="30" height="30"/><rect class="prod" x="156" y="194" width="30" height="30"/><rect class="prod" x="194" y="194" width="30" height="30"/><rect class="prod" x="232" y="194" width="30" height="30"/>
+  <rect class="soft" x="118" y="230" width="24" height="4"/><rect class="soft" x="156" y="230" width="24" height="4"/><rect class="soft" x="194" y="230" width="24" height="4"/><rect class="soft" x="232" y="230" width="24" height="4"/>
+  <!-- web results, mixed thumbnails: wide on the left, tall on the left, square on the right -->
+  <rect class="thumb" x="118" y="250" width="40" height="22"/><rect class="soft" x="168" y="254" width="94" height="5"/><rect class="soft" x="168" y="265" width="64" height="5"/>
+  <rect class="thumb" x="118" y="282" width="18" height="28"/><rect class="soft" x="146" y="289" width="116" height="5"/><rect class="soft" x="146" y="300" width="80" height="5"/>
+  <rect class="soft" x="118" y="324" width="112" height="5"/><rect class="soft" x="118" y="335" width="80" height="5"/><rect class="thumb" x="240" y="320" width="22" height="22"/>
+  <!-- side column: other features' modules -->
+  <rect class="other" x="272" y="140" width="58" height="56"/><rect class="soft" x="280" y="150" width="42" height="20"/><rect class="soft" x="280" y="179" width="30" height="5"/>
+  <rect class="other" x="272" y="204" width="58" height="36"/><rect class="soft" x="280" y="216" width="12" height="12"/><rect class="soft" x="295" y="216" width="12" height="12"/><rect class="soft" x="310" y="216" width="12" height="12"/>
+  <rect class="other" x="272" y="248" width="58" height="50"/><rect class="soft" x="280" y="258" width="42" height="5"/><rect class="soft" x="280" y="270" width="32" height="5"/><rect class="soft" x="280" y="282" width="42" height="5"/>
+  <rect class="other" x="272" y="306" width="58" height="36"/><rect class="soft" x="280" y="316" width="16" height="16"/><rect class="soft" x="302" y="318" width="20" height="5"/><rect class="soft" x="302" y="327" width="14" height="5"/>
+
+  <!-- before, then after -->
+  <path class="flow" d="M356,231 L421,231"/>
+
+  <!-- ============ AFTER ============ -->
+  <text x="440" y="84"><tspan class="tb">After</tspan><tspan class="tm" dx="10">five across, no side column</tspan></text>
+  <rect class="win" x="440" y="100" width="300" height="262" rx="6"/>
+  <line class="rule" x1="440" y1="124" x2="740" y2="124"/>
+  <circle class="dot" cx="456" cy="112" r="3.5"/><circle class="dot" cx="468" cy="112" r="3.5"/><circle class="dot" cx="480" cy="112" r="3.5"/>
+  <!-- a wide results column with even margins, five across, no side column -->
+  <rect class="prod" x="475" y="140" width="30" height="30"/><rect class="prod" x="525" y="140" width="30" height="30"/><rect class="prod" x="575" y="140" width="30" height="30"/><rect class="prod" x="625" y="140" width="30" height="30"/><rect class="prod" x="675" y="140" width="30" height="30"/>
+  <rect class="soft" x="475" y="176" width="24" height="4"/><rect class="soft" x="525" y="176" width="24" height="4"/><rect class="soft" x="575" y="176" width="24" height="4"/><rect class="soft" x="625" y="176" width="24" height="4"/><rect class="soft" x="675" y="176" width="24" height="4"/>
+  <rect class="prod" x="475" y="194" width="30" height="30"/><rect class="prod" x="525" y="194" width="30" height="30"/><rect class="prod" x="575" y="194" width="30" height="30"/><rect class="prod" x="625" y="194" width="30" height="30"/><rect class="prod" x="675" y="194" width="30" height="30"/>
+  <rect class="soft" x="475" y="230" width="24" height="4"/><rect class="soft" x="525" y="230" width="24" height="4"/><rect class="soft" x="575" y="230" width="24" height="4"/><rect class="soft" x="625" y="230" width="24" height="4"/><rect class="soft" x="675" y="230" width="24" height="4"/>
+  <!-- web results, one thumbnail style -->
+  <rect class="thumb" x="475" y="250" width="22" height="22"/><rect class="soft" x="507" y="254" width="198" height="5"/><rect class="soft" x="507" y="265" width="136" height="5"/>
+  <rect class="thumb" x="475" y="285" width="22" height="22"/><rect class="soft" x="507" y="289" width="198" height="5"/><rect class="soft" x="507" y="300" width="136" height="5"/>
+  <rect class="thumb" x="475" y="320" width="22" height="22"/><rect class="soft" x="507" y="324" width="198" height="5"/><rect class="soft" x="507" y="335" width="136" height="5"/>
+</svg>

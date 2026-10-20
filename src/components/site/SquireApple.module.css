@@ -1,0 +1,9 @@
+/* src/components/site/SquireApple.module.css
+   The hero's own apple at the stage's pixel size (--px), which in a duel is
+   the hero's: the same apple, the size it was on the tree. */
+
+.apple {
+  display: block;
+  width: calc(var(--cols) * var(--px));
+  height: calc(var(--rows) * var(--px));
+}

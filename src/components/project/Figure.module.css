@@ -1,0 +1,266 @@
+/* src/components/project/Figure.module.css */
+
+.figure {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Only when the author fixes a ratio: letterbox, never crop the shot. */
+.fit {
+  object-fit: contain;
+  background: var(--color-surface);
+}
+
+/* ---- Click to enlarge: the still is a button that opens a dialog ---- */
+.zoom {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+}
+
+.zoom:focus-visible {
+  outline-offset: -4px;
+}
+
+.lightbox {
+  margin: auto;
+  padding: 0;
+  max-width: min(96vw, 1600px);
+  max-height: 92vh;
+  border: var(--rule);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-rest);
+  overflow: hidden;
+}
+
+.lightbox::backdrop {
+  background: rgba(17, 17, 16, 0.82);
+}
+
+.full {
+  display: block;
+  max-width: 100%;
+  max-height: calc(92vh - 4px);
+  object-fit: contain;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 4px 10px;
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-bg);
+  background: var(--color-text);
+  border: 2px solid var(--color-bg);
+  cursor: pointer;
+}
+
+/* No frame: an image gets the page's 2px rule; a placeholder gets the same
+   weight dashed, the site's mark for "not yet". */
+.plain {
+  border: var(--rule);
+  background: var(--color-surface);
+}
+
+.pending {
+  border: 2px dashed var(--color-muted);
+}
+
+/* ---- Placeholder: hatched, so it can't be mistaken for a finished shot ---- */
+.placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  width: 100%;
+  padding: 1rem;
+  text-align: center;
+  color: var(--color-muted);
+  background-color: var(--color-surface);
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent 0 11px,
+    var(--color-border) 11px 12px
+  );
+}
+
+.glyph {
+  width: 48px;
+  height: 40px;
+  margin-bottom: 0.25rem;
+  opacity: 0.8;
+}
+
+.phLabel {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.phAlt {
+  max-width: 38ch;
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+
+/* ---- Browser chrome ---- */
+.browser {
+  border: var(--rule);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-rest);
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  height: 32px;
+  padding-inline: 12px;
+  border-bottom: var(--rule);
+  background-color: var(--color-bg);
+}
+
+.dots {
+  display: flex;
+  gap: 6px;
+  flex: none;
+}
+
+/* Square, hollow "lights": pixel-flavoured, and no traffic-light colours
+   that would have to be told apart. */
+.dots i {
+  width: 9px;
+  height: 9px;
+  border: 2px solid var(--color-text);
+}
+
+.url {
+  flex: 0 1 44%;
+  min-width: 0;
+  margin-inline: auto;
+  padding: 1px 12px;
+  border: 1.5px solid var(--color-border);
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--color-muted);
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ---- Phone chrome: a dark bezel in both themes, outlined in ink. The
+   speaker slot sits in the bezel, never on the screen, so it reads whatever
+   colour the screen is. ---- */
+.isPhone {
+  align-items: center;
+}
+
+.phone {
+  position: relative;
+  width: min(100%, 200px);
+  padding: 21px 9px 13px;
+  border: var(--rule);
+  border-radius: 28px;
+  background: #1a1a18;
+  box-shadow: var(--shadow-rest);
+}
+
+.phone .placeholder,
+.phone .img {
+  border-radius: 16px;
+}
+
+.notch {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  width: 36px;
+  height: 5px;
+  margin-left: -18px;
+  border-radius: 999px;
+  background: #56564f;
+}
+
+/* In the dark the bezel goes black and the screen gets a lit edge, so
+   bezel and screen stay two things. */
+@media (prefers-color-scheme: dark) {
+  .phone {
+    background: #000;
+  }
+  .phone .placeholder {
+    background-color: #262624;
+    box-shadow: inset 0 0 0 1.5px rgba(238, 236, 230, 0.2);
+  }
+}
+
+.caption {
+  max-width: 62ch;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--color-muted);
+}
+
+.isPhone .caption {
+  text-align: center;
+}
+
+/* ---- Gallery ---- */
+.gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  min-width: 0;
+}
+
+.strip {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: 1.25rem;
+  align-items: start;
+}
+
+@media (max-width: 640px) {
+  /* A swipeable strip: the next shot peeks in from the edge. */
+  .strip {
+    grid-auto-columns: 82%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 0 6px 12px 0;
+    overscroll-behavior-x: contain;
+  }
+  .strip > * {
+    scroll-snap-align: start;
+  }
+
+  /* A narrow row keeps its columns: the figures shrink side by side. */
+  .gallery[data-narrow] .strip {
+    grid-auto-columns: minmax(0, 1fr);
+    gap: 0.75rem;
+    overflow-x: visible;
+    scroll-snap-type: none;
+    padding: 0;
+  }
+}

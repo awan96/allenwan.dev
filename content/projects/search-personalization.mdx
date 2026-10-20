@@ -1,0 +1,62 @@
+---
+title: AI Personalization at Google Search
+summary: Improving the quality of personalization for users on Google AI Mode.
+role: Senior Software Engineer
+year: 2025 – now
+stack:
+  - Prompt Quality
+  - Kotlin
+  - Java
+links: {}
+icon: icon_search
+featured: true
+order: 2
+filler: false
+---
+
+Through careful feature engineering and precise experimentation, I shipped improvements to the LLM's responses and am currently working on advancing the saving and applying of user data.
+
+## The problem space
+
+Personalization on Google AI Mode is a careful balance of latency and quality. Users expect fast, accurate responses that adapt to user info.
+Improvements require measuring statistically significant metrics movement during prototyping and experimentation, and after launch.
+The problem space involves identifying gaps, developing end-to-end features and improvements to address core user needs, landing features after extensive quality analysis, and justifying the entire process with evidence.
+
+## What I owned
+
+- Measured the impact of shopping vertical AI features on key Search metrics, which drove high-level decision making.
+- Hillclimbed quality on personal context for shopping queries, by improving tool calls and prompt logic.
+- Ongoing work on memory triggering, multi-turn queries, and gift queries, with a focus on response quality and personalization accuracy.
+
+## The hard part
+
+**Holdbacks.** Every AI launch on shopping queries had its own A/B test, but we didn't have a way to retroactively measure the full impact of Shopping-specific launches in totality. I designed and ran a long-running holdback on AI Overviews and AI Mode. For AI Overviews, this meant ablating the feature on shopping and (after a few rounds of iteration) a custom counterfactual logger for robust metrics analysis within that slice. For AI Mode, the holdback was feature level, so I built a flag-guarded path, wiring an early-stage decision signal to release a specific slice of features back to default settings. The AI Mode results looked strange, and after diving into the metrics, I discovered that, during the experiment, AI Mode had moved to a newer model, so the holdback was measuring that upgrade and diluting any meaningful learnings. I wrote a memo detailing the shortcomings of running long-term feature holdbacks on a base that was constantly moving.
+
+**Prompt merge.** AI Mode merged its category-specific prompts into one unified system prompt, and the shopping personal context instructions were at risk of dropping out in the merge. I traced the triggering logic on the old prompts and on the new one, then landed the shopping instructions in the unified prompt gated on shopping intent, with golden regression tests that fail if a later prompt edit drops them. I then measured how closely the new triggering matched the old.
+
+**Memory trigger.** <Stamp icon="hourglass">In progress</Stamp> Ongoing work around optimally triggering memory saves for conversational turns with AI Mode and AI Overviews, by optimizing LLM classifier prompts and providing the correct conversational context.
+
+**Gifts.** <Stamp icon="hourglass">In progress</Stamp> Ongoing work around intelligently personalizing gift queries based on the user's personal context. Sorting user data into relevant and irrelevant information.
+
+<Callout kind="tradeoff" title="Accurate LLM decision making on a budget">
+
+In high-speed AI services like AI Mode and AI Overviews, LLM classifiers and prompts often run on tiny models, turning a simple prompt-based decision maker into a battle between token usage and hallucination. Both are critical when designing the prompts and the inputs, in order to maximize accuracy while making it as simple as possible for the model to make the correct decision.
+
+</Callout>
+
+## The result
+
+- Delivered a multi-week readout on what AI Overviews do to shopping engagement, query reformulation, navigation, and user growth, and wrote the memo on the shortcomings of long-term feature holdbacks on a moving base.
+- Built a combination of a custom decision signal and counterfactual logger that evaluates experiments within a team's relevant slice, which other category teams can reuse for their own AI experiments.
+- Landed the shopping personal context instructions in AI Mode's unified prompt.
+- Successfully ran live experiments and internal evaluations on the latest prompts and models used by Google's search products, focused on the topics of memory, multi-turn, personalization, and gifting.
+
+## What I'd change
+
+I'd build the counterfactual logger before attempting to hold back a high-impact feature like AI Overviews. Although I didn't expect any problems with imbalanced traffic between the holdback and control, once metrics moved, the counterfactual became the way to convince stakeholders the movement was real.
+
+<Callout kind="lesson" title="Synthetic profiles for benchmarking">
+
+Raters and live logs have trouble with granular evaluation of AI answers for specific cases, making it difficult to assess correctness when building an AI feature. This is compounded by test accounts not containing the relevant information needed for accurately and efficiently testing personalization. The solution I discovered was using AI to build synthetic user profiles tuned to give every benchmark case a seeded answer, and an LLM judge to check each answer against it. This considerably speeds up development by using a fast and reliable method to hillclimb accuracy.
+
+</Callout>

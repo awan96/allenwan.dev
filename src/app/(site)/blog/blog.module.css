@@ -1,0 +1,123 @@
+/* src/app/(site)/blog/blog.module.css */
+
+.empty {
+  color: var(--color-muted);
+}
+
+/* Ruled rows, like a table of contents, flush with the page header. */
+.list {
+  list-style: none;
+  border-top: var(--rule);
+}
+
+.item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 8.5rem minmax(0, 1fr) auto;
+  column-gap: 2rem;
+  padding-block: 1.75rem;
+  border-bottom: var(--rule);
+}
+
+/* The row is one link; the keyboard ring goes round the whole row. */
+.item:has(.link:focus-visible) {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.link:focus-visible {
+  outline: none;
+}
+
+.link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding-top: 0.45rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.minutes {
+  font-weight: 400;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.title {
+  font-size: 1.75rem;
+  line-height: 1.2;
+}
+
+.link {
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 2px no-repeat;
+  transition: background-size 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.item:hover .link {
+  background-size: 100% 2px;
+}
+
+.desc {
+  font-size: 15.5px;
+  color: var(--color-muted);
+  max-width: 62ch;
+}
+
+.tags {
+  margin-top: 0.4rem;
+}
+
+.arrow {
+  align-self: center;
+  padding-right: 0.25rem;
+  font-size: 1.35rem;
+  line-height: 1;
+  color: var(--color-accent);
+  transition: transform 0.15s;
+}
+
+.item:hover .arrow {
+  transform: translateX(4px);
+}
+
+@media (max-width: 640px) {
+  .item {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 0.5rem;
+    padding-block: 1.4rem;
+  }
+
+  .meta {
+    flex-direction: row;
+    gap: 0.6rem;
+    padding-top: 0;
+  }
+
+  .minutes::before {
+    content: "·";
+    margin-right: 0.6rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .arrow {
+    display: none;
+  }
+}

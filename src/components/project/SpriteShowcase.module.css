@@ -1,0 +1,20 @@
+/* src/components/project/SpriteShowcase.module.css */
+
+.showcase {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.frame {
+  border: var(--rule);
+  box-shadow: var(--shadow-rest);
+}
+
+.caption {
+  max-width: 62ch;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--color-muted);
+}

@@ -1,0 +1,308 @@
+/* Standalone sprite editor. Carries its own copy of the Hearthlight dark
+   theme tokens so it no longer depends on the game's stylesheet — the
+   editor serves every sprite library on the site, not just the game. */
+
+.shell {
+  /* grounds */
+  --se-ground: #262330;
+  --se-panel: #322e3d;
+  --se-panel-deep: #2b2836;
+  --se-line: #4a4457;
+  --se-line-soft: #3b3746;
+  /* ink */
+  --se-ink: #f0e8da;
+  --se-muted: #a29aae;
+  /* accents */
+  --se-honey: #e8c58a;
+  --se-honey-deep: #c29b62;
+  --se-coral: #e2a08c;
+  --se-creek: #a3ccd4;
+
+  background: var(--se-ground);
+  color: var(--se-ink);
+  min-height: calc(100vh - 57px);
+}
+
+/* Form controls don't inherit the page's face: every tool, swatch, field
+   and button takes Karla, like the text around them. */
+.shell :where(button, input, select, textarea) {
+  font-family: inherit;
+}
+
+.wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 4rem;
+}
+
+.header {
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  font-size: 1.6rem;
+  color: var(--se-honey);
+  letter-spacing: 0.03em;
+}
+
+.subtitle {
+  color: var(--se-muted);
+  font-size: 0.9rem;
+  margin-top: 0.35rem;
+}
+
+.subtitle code {
+  font-family: var(--font-mono);
+  color: var(--se-creek);
+  font-size: 0.85em;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (max-width: 720px) {
+  .columns { grid-template-columns: 1fr; }
+}
+
+/* ---- canvas ---- */
+
+.canvas {
+  display: grid;
+  /* grid-template-columns comes inline — the column count is the sprite width */
+  width: fit-content;
+  gap: 1px;
+  padding: 1px;
+  background: var(--se-line-soft);
+  border: 1px solid var(--se-line);
+  border-radius: 4px;
+  touch-action: none;
+  user-select: none;
+}
+
+.px {
+  width: var(--cell, 28px);
+  height: var(--cell, 28px);
+  padding: 0;
+  border: none;
+  cursor: crosshair;
+  /* checkerboard = transparent */
+  background:
+    repeating-conic-gradient(var(--se-panel-deep) 0% 25%, var(--se-ground) 0% 50%)
+    0 0 / calc(var(--cell, 28px) / 2) calc(var(--cell, 28px) / 2);
+}
+
+.px:focus-visible {
+  outline: 2px solid var(--se-honey);
+  outline-offset: -2px;
+}
+
+/* A square in the making: the cells it will paint (already in the colour
+   they will take) wear a thin honey ring, and its first corner a thick one. */
+.pxPreview {
+  box-shadow: inset 0 0 0 1px var(--se-honey);
+}
+
+.pxAnchor {
+  box-shadow: inset 0 0 0 2px var(--se-honey);
+}
+
+.tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.9rem;
+}
+
+.toolGroup {
+  display: inline-flex;
+  gap: 0.4rem;
+  padding-right: 0.65rem;
+  border-right: 1px solid var(--se-line-soft);
+}
+
+.tool {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  padding: 0.3rem 0.65rem;
+  background: var(--se-panel);
+  color: var(--se-ink);
+  border: 1px solid var(--se-line);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.tool:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+/* Destructive action — coral, per the Hearthlight "danger" convention */
+.toolDanger {
+  color: var(--se-coral);
+  border-color: rgba(226, 160, 140, 0.45);
+}
+
+/* One line under the tools saying what the chosen one does. */
+.toolHint {
+  color: var(--se-muted);
+  font-size: 0.72rem;
+  margin: 0.55rem 0 0;
+}
+
+.toolActive {
+  border-color: var(--se-honey);
+  box-shadow: inset 0 0 0 1px var(--se-honey);
+}
+
+.toolSwatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  border: 1px solid var(--se-line);
+}
+
+/* ---- side column ---- */
+
+.side {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  max-width: 420px;
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.82rem;
+}
+
+.field span {
+  width: 110px;
+  color: var(--se-muted);
+  flex-shrink: 0;
+}
+
+.field input,
+.field select {
+  flex: 1;
+  background: var(--se-panel);
+  color: var(--se-ink);
+  border: 1px solid var(--se-line);
+  border-radius: 4px;
+  padding: 0.35rem 0.5rem;
+  font-size: 0.82rem;
+}
+
+.field input:disabled {
+  opacity: 0.5;
+}
+
+.sizeRow {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex: 1;
+}
+
+.sizeRow input {
+  width: 4.5rem;
+  background: var(--se-panel);
+  color: var(--se-ink);
+  border: 1px solid var(--se-line);
+  border-radius: 4px;
+  padding: 0.35rem 0.5rem;
+  font-size: 0.82rem;
+}
+
+.sizeRow input:disabled {
+  opacity: 0.5;
+}
+
+.sizeTimes {
+  color: var(--se-muted);
+}
+
+.hint {
+  color: var(--se-muted);
+  font-size: 0.72rem;
+  margin: -0.3rem 0 0 calc(110px + 0.6rem);
+}
+
+.previews {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  padding: 0.9rem;
+  background: var(--se-panel-deep);
+  border: 1px solid var(--se-line-soft);
+  border-radius: 4px;
+}
+
+.previews figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  margin: 0;
+}
+
+.previews figcaption {
+  font-size: 0.65rem;
+  color: var(--se-muted);
+}
+
+.code {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  line-height: 1.45;
+  background: var(--se-panel-deep);
+  color: var(--se-ink);
+  border: 1px solid var(--se-line);
+  border-radius: 4px;
+  padding: 0.6rem;
+  resize: vertical;
+  white-space: pre;
+}
+
+.copyBtn {
+  align-self: flex-start;
+  background: var(--se-honey);
+  color: #262330;
+  border: none;
+  border-radius: 4px;
+  padding: 0.45rem 1.1rem;
+  font-weight: 600;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+
+.copyBtn:hover {
+  opacity: 0.88;
+}
+
+.actionRow {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+/* Secondary action — same shape as copyBtn, quieter fill */
+.ghostBtn {
+  background: transparent;
+  color: var(--se-honey);
+  border: 1px solid var(--se-honey-deep);
+}
+
+.saveError {
+  color: var(--se-coral);
+  font-size: 0.75rem;
+  margin: 0;
+}

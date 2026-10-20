@@ -1,0 +1,80 @@
+/* src/components/site/NotFoundScene.module.css
+   A small framed window: the hero's day sky in its five flat bands (dimmed
+   in dark mode, as the hero's is), the tree centred on the ground. Every
+   length is a whole number of art pixels (--p), so every edge lands on the
+   same grid as the art. The window takes its height from the tree, so a
+   redrawn tree never crops. */
+
+.scene {
+  --p: var(--art-px);
+  --b0: #9fc6d4;
+  --b1: #b0d0db;
+  --b2: #c2dadf;
+  --b3: #d4e4e1;
+  --b4: #e3ece2;
+
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  /* 74 art pixels: the 32-pixel tree with 21 either side. */
+  width: calc(74 * var(--p));
+  max-width: 100%;
+  /* Sky above the canopy; the grass (4) and the ink line (1) over 3 of
+     soil below the trunk. */
+  padding: calc(7 * var(--p)) 0 calc(8 * var(--p));
+  overflow: hidden;
+  border: var(--rule);
+  background-color: var(--b4);
+  background-image: linear-gradient(
+    to bottom,
+    var(--b0) 0 calc(10 * var(--p)),
+    var(--b1) calc(10 * var(--p)) calc(19 * var(--p)),
+    var(--b2) calc(19 * var(--p)) calc(26 * var(--p)),
+    var(--b3) calc(26 * var(--p)) calc(31 * var(--p)),
+    var(--b4) calc(31 * var(--p))
+  );
+  background-repeat: no-repeat;
+  box-shadow: var(--shadow-rest);
+}
+
+@media (prefers-color-scheme: dark) {
+  .scene {
+    --b0: #1f3542;
+    --b1: #25404d;
+    --b2: #2c4a56;
+    --b3: #34545d;
+    --b4: #3d5d62;
+  }
+}
+
+.tree {
+  position: relative;
+  z-index: 1;
+  display: block;
+  flex: none;
+  width: calc(var(--cols) * var(--p));
+  height: calc(var(--rows) * var(--p));
+  margin-bottom: calc(var(--blank) * var(--p) * -1);
+}
+
+.soil {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: calc(3 * var(--p));
+  background: var(--color-soil);
+}
+
+/* The ground tile (ground.ts, 160 × 7 art pixels): its tufts rise into
+   the sky behind the trunk, its ink line meets the soil. */
+.grass {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(3 * var(--p));
+  height: calc(7 * var(--p));
+  background-size: calc(160 * var(--p)) 100%;
+  background-repeat: repeat-x;
+}

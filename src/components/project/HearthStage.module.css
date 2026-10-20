@@ -1,0 +1,166 @@
+/* src/components/project/HearthStage.module.css
+   The game's palette, not the site's: the stage is the same dark room in
+   light and dark mode, the way a window shows the weather outside. */
+
+.stage {
+  --hl-shell: #262330;
+  --hl-cream: #f6efdd;
+  --hl-stone: #3b3549;
+  --hl-mortar: #2f2a3b;
+  --hl-lip: #575069;
+  /* Whole pixels only: a row of figures is 4px per art pixel, never
+     chunkier than the site's --art-px (3px on phones). */
+  --px: min(4px, var(--art-px));
+
+  display: grid;
+  /* Set by the component to a count that divides the cast (see .tsx). */
+  grid-template-columns: repeat(var(--n, 1), minmax(0, 1fr));
+  align-items: end;
+  /* A layer of its own, so the dirt (z-index -1) sits on the wall and
+     under the floor and the figures. */
+  position: relative;
+  isolation: isolate;
+  background-color: var(--hl-shell);
+  background-image: radial-gradient(ellipse 60% 85% at 50% 100%, rgba(232, 197, 138, var(--hearth-alpha, 0.13)), transparent 72%);
+  color: var(--hl-cream);
+}
+
+/* The wall before the dirt (STAGE_WALL "paper"): the site's paper grain
+   under the hearth's glow. */
+.paper {
+  background-image:
+    radial-gradient(ellipse 60% 85% at 50% 100%, rgba(232, 197, 138, var(--hearth-alpha, 0.13)), transparent 72%),
+    var(--grain);
+}
+
+/* The wall (STAGE_WALL "dirt"): an inline SVG at the stage's pixel size,
+   its span in art pixels (--span-w, --span-h), clipped to the stage by its
+   wrapper. */
+.dirtWrap {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.dirt {
+  display: block;
+  width: calc(var(--span-w) * var(--px));
+  height: calc(var(--span-h) * var(--px));
+}
+
+/* Two figures in a big panel: stand them at the hero's own scale, and no
+   bigger, so the art under the hero never outranks it. */
+.duel {
+  --px: var(--art-px);
+  grid-template-columns: 1fr 1fr;
+}
+
+.figure {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: flex-end;
+}
+
+.standing {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 2.75rem 0.5rem 0;
+}
+
+/* Hero on the left edges right, foe on the right edges left: a duel reads
+   as two figures facing across a gap, not two figures in two boxes. */
+.duel .figure:first-of-type .standing {
+  justify-content: flex-end;
+  padding-right: 14%;
+}
+
+.duel .figure:last-of-type .standing {
+  justify-content: flex-start;
+  padding-left: 14%;
+}
+
+.sprite {
+  display: block;
+  width: calc(var(--cols) * var(--px));
+  height: calc(var(--rows) * var(--px));
+  /* Feet on the floor line, whatever empty rows the grid carries. */
+  margin-bottom: calc(var(--blank) * var(--px) * -1);
+  position: relative;
+  z-index: 1;
+}
+
+.flip {
+  transform: scaleX(-1);
+}
+
+/* A figure with something at its feet: the sprite and the thing share a
+   box that ends at the feet (the sprite's empty rows hang below it), so
+   the thing stands on the floor line and the figure never moves. */
+.body {
+  position: relative;
+}
+
+/* Tucked into the sprite's empty bottom corner toward the middle of a duel
+   (right, or left for a mirrored figure), one art pixel clear of the feet
+   (--room: the empty columns beside them). */
+.atFeet {
+  position: absolute;
+  bottom: 0;
+  left: calc(100% - (var(--room) - 1) * var(--px));
+  z-index: 1;
+}
+
+.atFeetFlip {
+  left: auto;
+  right: calc(100% - (var(--room) - 1) * var(--px));
+}
+
+/* The floor: a lit lip, then two courses of stone with staggered joints.
+   A fixed height, so every figure in a row stands on the same line. */
+.floor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 38px;
+  padding-inline: 0.3rem;
+  border-top: 4px solid var(--hl-lip);
+  background:
+    repeating-linear-gradient(90deg, var(--hl-mortar) 0 4px, transparent 4px 40px) 0 0 / 100% 50% no-repeat,
+    repeating-linear-gradient(90deg, var(--hl-mortar) 0 4px, transparent 4px 40px) 20px 100% / 100% 50% no-repeat,
+    linear-gradient(var(--hl-mortar), var(--hl-mortar)) 0 50% / 100% 4px no-repeat,
+    var(--hl-stone);
+  text-align: center;
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--hl-cream);
+}
+
+@media (max-width: 800px) {
+  .stage {
+    grid-template-columns: repeat(var(--n-sm, 1), minmax(0, 1fr));
+  }
+  .duel {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .standing {
+    padding-top: 1.75rem;
+  }
+  .label {
+    letter-spacing: 0.05em;
+  }
+}

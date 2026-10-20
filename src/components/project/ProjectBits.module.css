@@ -1,0 +1,55 @@
+/* src/components/project/ProjectBits.module.css */
+
+/* ---- The icon tile: a framed square of pixel canvas. The canvas stays
+   light in both themes, as in any image editor (and GridAnatomy): the site
+   sprites' dark outline would vanish into a dark tile. ---- */
+.tile {
+  /* One art pixel = --px screen pixels, always a whole number. */
+  --px: 4px;
+  --pad: 8px;
+  --dot: rgba(42, 92, 69, 0.22);
+  --drop: 2px;
+  --ring: transparent;
+
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: calc(12 * var(--px) + 2 * var(--pad) + 4px);
+  height: calc(12 * var(--px) + 2 * var(--pad) + 4px);
+  border: 2px solid var(--color-text);
+  background-color: #e8f2ed;
+  /* A faint dot on every other pixel corner: reads as an empty canvas when
+     the icon isn't drawn yet, and as paper tooth under it when it is. */
+  background-image: radial-gradient(var(--dot) 0.75px, transparent 1.25px);
+  background-size: calc(var(--px) * 2) calc(var(--px) * 2);
+  background-position: calc(var(--pad) - var(--px)) calc(var(--pad) - var(--px));
+  box-shadow: inset 0 0 0 2px var(--ring), var(--drop) var(--drop) 0 var(--shadow-ink);
+}
+
+.lg {
+  --px: 8px;
+  --pad: 12px;
+  --drop: 4px;
+}
+
+.sprite {
+  display: block;
+  width: calc(var(--cols) * var(--px));
+  height: calc(var(--rows) * var(--px));
+}
+
+/* In the dark the cream border would melt into the light canvas, so an
+   ink ring inside it keeps the frame's edge. */
+@media (prefers-color-scheme: dark) {
+  .tile {
+    --ring: #1a1a18;
+  }
+}
+
+@media (max-width: 640px) {
+  .lg {
+    --px: 4px;
+    --pad: 8px;
+    --drop: 2px;
+  }
+}

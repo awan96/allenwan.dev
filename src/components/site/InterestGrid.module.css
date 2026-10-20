@@ -1,0 +1,277 @@
+/* src/components/site/InterestGrid.module.css
+   The About page's interest badges: a panel that reads one out, over a
+   grid of pixel badges. */
+
+.interests {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ---- The panel: a static frame, so it rests on ink ---- */
+.panel {
+  border: var(--rule);
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-rest);
+  padding: 1.4rem 1.5rem;
+}
+
+/* Every entry in one cell: the panel stands as tall as its longest entry,
+   and only the one being read is visible. */
+.stack {
+  display: grid;
+}
+
+.stack > * {
+  grid-area: 1 / 1;
+  visibility: hidden;
+}
+
+.stack > [data-shown] {
+  visibility: visible;
+}
+
+.entry {
+  /* The icon's pixel: as big as the hero's, never bigger. */
+  --px: var(--art-px);
+  display: flex;
+  align-items: flex-start;
+  gap: 1.4rem;
+}
+
+.entryIcon,
+.badgeIcon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  min-width: calc(12 * var(--px));
+  min-height: calc(12 * var(--px));
+  /* The "?" of an icon still to come draws in this. */
+  color: var(--color-muted);
+}
+
+/* Whole pixels: a sprite's grid size (InterestIcon) times the --px here. */
+.entryIcon svg,
+.badgeIcon svg {
+  display: block;
+  width: calc(var(--cols) * var(--px));
+  height: calc(var(--rows) * var(--px));
+}
+
+.entryText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.entryHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+}
+
+.entryTitle {
+  font-size: var(--text-h3);
+}
+
+.entryBody,
+.introBody {
+  max-width: 60ch;
+  text-wrap: pretty;
+}
+
+/* Only as wide as its words, so the underline draws under them alone. */
+.entryLink {
+  align-self: flex-start;
+}
+
+.entryRelated {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.75rem;
+  margin-top: 0.35rem;
+}
+
+.relatedLabel,
+.pinMark,
+.hint {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+/* The pinned badge's corner square beside the word, so the lock reads by
+   shape and words, not colour alone. */
+.pinMark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  color: var(--color-text);
+}
+
+.pinMark::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  background: var(--color-accent);
+}
+
+.hint {
+  margin-top: 0.35rem;
+}
+
+/* A touchscreen can't hover: it gets the tap line instead. */
+.hintTouch {
+  display: none;
+}
+
+@media (hover: none) {
+  .hintPointer {
+    display: none;
+  }
+  .hintTouch {
+    display: inline;
+  }
+}
+
+/* ---- The badges ---- */
+/* Rows of --cols; a short last row sits centred under the full ones, so
+   any count looks laid out on purpose. */
+.grid {
+  --cols: 8;
+  --gap: 0.75rem;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--gap);
+}
+
+/* The badge fills its slot, so a row whose label wraps stays one height. */
+.grid > li {
+  flex: 0 0 calc((100% - (var(--cols) - 1) * var(--gap)) / var(--cols));
+  display: flex;
+}
+
+.badge {
+  /* A row of figures caps at 4px a pixel (docs/SITE.md §2). */
+  --px: min(var(--art-px), 4px);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  width: 100%;
+  aspect-ratio: 1;
+  /* Room for an 11-letter label on one line at 8 across (104px). */
+  padding: 0.75rem 0.35rem;
+  border: var(--rule);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+}
+
+.badgeLabel {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.35;
+  text-align: center;
+  /* Only a 320px phone needs it: PICKLEBALL can't break otherwise. */
+  overflow-wrap: anywhere;
+  color: var(--color-muted);
+}
+
+.badgeIcon,
+.badgeLabel {
+  transition: opacity 0.15s, color 0.15s;
+}
+
+/* The one being read is lifted, as anything clickable is under the
+   pointer, and it stays up while it's pinned. */
+.badge[data-state="current"] {
+  transform: var(--lift);
+  box-shadow: var(--shadow-lift);
+}
+
+/* Its links rest on ink, a step below the lift… */
+.badge[data-state="related"] {
+  box-shadow: var(--shadow-rest);
+}
+
+.badge[data-state="current"] .badgeLabel,
+.badge[data-state="related"] .badgeLabel {
+  color: var(--color-text);
+}
+
+/* …and the rest step back, so the links read as a group by lightness and
+   shadow, never by colour alone. */
+.badge[data-state="faded"] {
+  border-color: var(--color-border);
+}
+
+.badge[data-state="faded"] .badgeIcon,
+.badge[data-state="faded"] .badgeLabel {
+  opacity: 0.4;
+}
+
+/* Pinned: a filled corner square, like the current job's node on the
+   timeline above. */
+.badge[aria-pressed="true"]::after {
+  content: "";
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 8px;
+  height: 8px;
+  background: var(--color-accent);
+}
+
+/* After every state, so a press always lands flat. */
+.badge:active {
+  transform: none;
+  box-shadow: none;
+}
+
+/* Each step keeps a badge wide enough for its longest word. */
+@media (max-width: 959px) {
+  .grid {
+    --cols: 6;
+  }
+}
+
+@media (max-width: 700px) {
+  .grid {
+    --cols: 4;
+  }
+}
+
+@media (max-width: 640px) {
+  .panel {
+    padding: 1.1rem;
+  }
+
+  .entry {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid {
+    --cols: 3;
+    --gap: 0.6rem;
+  }
+}

@@ -1,0 +1,42 @@
+/* src/app/not-found.module.css */
+
+/* A short page: the footer's ground still meets the bottom of the window. */
+.page {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1 0 auto;
+  /* .wrap's auto side margins stop a flex item stretching, so it would size
+     to its content (the window plus the gutters) and push a 320px
+     phone sideways. A full width lets the window's max-width take hold. */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-top: 4.5rem;
+}
+
+/* "404" rides over the title as the page's eyebrow. */
+.main .code {
+  margin-top: 2.5rem;
+}
+
+.title {
+  margin-top: 0.4rem;
+  font-size: var(--text-h1);
+}
+
+.sub {
+  margin: 0.6rem 0 1.75rem;
+  color: var(--color-muted);
+}
+
+@media (max-width: 640px) {
+  .main {
+    padding-top: 3rem;
+  }
+}

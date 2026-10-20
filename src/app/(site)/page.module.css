@@ -1,0 +1,166 @@
+/* src/app/(site)/page.module.css */
+
+/* ---- Hero text (sits over the scene; colours follow the sky) ---- */
+.headline {
+  font-size: var(--text-display);
+  line-height: 1.02;
+  color: var(--sky-text, var(--color-text));
+  margin-bottom: 1.1rem;
+}
+
+.headline em {
+  font-style: italic;
+  color: var(--sky-accent, var(--color-accent));
+}
+
+.cursor {
+  color: var(--sky-accent, var(--color-accent));
+  animation: blink 1.1s step-end infinite;
+}
+
+/* The game section, inside the hold with the hero (page.tsx): it floats
+   over the pinned scene. It's see-through, so it leaves the scene's clicks
+   (the apple) alone and only the card takes them. Its bottom padding is the
+   hero's ground (12 art pixels) and a little more, so when the scene lets go
+   the card sits just above the grass. */
+.over {
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+  padding-bottom: calc(var(--art-px) * 12 + 2rem);
+}
+
+.over > * {
+  pointer-events: auto;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.bio {
+  font-size: 1.08rem;
+  max-width: 44ch;
+  text-wrap: pretty;
+  color: var(--sky-muted, var(--color-muted));
+  margin-bottom: 1.6rem;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem 1.4rem;
+  flex-wrap: wrap;
+}
+
+/* ---- Sections ---- */
+.section {
+  padding-top: var(--spacing-section);
+}
+
+/* ---- The game, as a window into Hearthlight ----
+   Overrides of the shared button and link are scoped under .game so they
+   outrank ui.module.css whatever order the build loads the sheets in. */
+.game {
+  --hl-shell: #262330;
+  --hl-cream: #f6efdd;
+  --hl-honey: #e8c58a;
+
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  border: var(--rule);
+  background-color: var(--hl-shell);
+  color: var(--hl-cream);
+  box-shadow: 6px 6px 0 var(--color-accent);
+}
+
+.stage {
+  display: flex;
+  border-right: var(--rule);
+}
+
+.stage > * {
+  flex: 1;
+}
+
+.gameText {
+  padding: 2rem 2rem 2.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  justify-content: center;
+}
+
+.gameEyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--hl-honey);
+}
+
+.gameTitle {
+  font-size: clamp(2rem, 4.5vw, 2.6rem);
+}
+
+.gameDesc {
+  font-size: 15px;
+  color: #cfc7b6;
+  margin-bottom: 0.6rem;
+  max-width: 42ch;
+  text-wrap: pretty;
+}
+
+.game .playBtn {
+  background: var(--hl-honey);
+  color: var(--hl-shell);
+  border-color: var(--hl-cream);
+}
+
+.game .playBtn:hover {
+  box-shadow: 5px 5px 0 var(--hl-cream);
+}
+
+/* The shared press (.btn:active) is outranked by the hover above. */
+.game .playBtn:active {
+  box-shadow: none;
+}
+
+.game .gameQuiet {
+  color: var(--hl-cream);
+}
+
+.game .gameQuiet:hover {
+  color: var(--hl-honey);
+}
+
+.game :focus-visible {
+  outline-color: var(--hl-honey);
+}
+
+@media (max-width: 720px) {
+  .game {
+    grid-template-columns: 1fr;
+  }
+  .stage {
+    border-right: none;
+    border-bottom: var(--rule);
+  }
+  .gameText {
+    padding: 1.5rem 1.25rem 1.6rem;
+  }
+}
+
+/* ---- Selected work ---- */
+.cards {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+  gap: 1.25rem;
+}
+
+.cards > li {
+  display: flex;
+}

@@ -1,0 +1,63 @@
+---
+title: Google Shopping on iOS
+summary: Building features for the Google Shopping iOS app.
+role: Software Engineer II
+year: 2019 – 2021
+stack:
+  - Swift
+  - Objective-C
+  - Java
+  - Server-Driven UI
+links: {}
+icon: icon_phone
+featured: false
+order: 5
+filler: false
+---
+
+I worked on the Google Shopping iOS app from September 2019 until the app wound down in 2021. The app was native Swift and Objective-C with server-driven UI from a Java server, so features like order confirmation, price tracking, and the action footer had a client half and a server half. I was the only engineer on my team who wrote server code, so I took ownership of any API legwork for my own features, and supported my teammate when they lacked server-side partner support.
+
+
+## The problem space
+
+The app was in its rapid development phase when I joined; a lot of the infrastructure was mid-design. Every feature added meant considering the bigger picture and weighing a one-off solution against a scalable one. As a result, throughout my time working on this app, I got hands-on experience building a complex frontend system while moving fast.
+Users came to the app to find a product, track its price, and get to the buy button, so the work was on checkout, price tracking, and the product page.
+Order confirmation, price tracking, and the action footer each shipped on two sides, the native client in Swift and Objective-C and the server-driven UI in Java; price tracking launched on iOS and Android, and the action footer was tested on both platforms.
+
+## What I owned
+
+- Built price tracking end to end, the Swift client and the Java server API, and led its launch on iOS and Android.
+- Built the Share to compare share extension from scratch, taking a product shared from any app into a Shopping search, from prototype to release in about three months.
+- Built the action footer for product pages and the server API Android reused for its version, and co-led the launch process.
+- Redesigned order confirmation and checkout steps with server-driven UI, shipped AR View in 3D, built a Flutter add-to-app entry point, and led the app's App Store privacy-label compliance.
+
+## The biggest landings
+
+**Hideaway action footer.** On product pages, Add to cart and Visit site scrolled out of reach. I built an action footer that slides away as the user scrolls down and comes back as they scroll up. iOS didn't have any existing solutions, so I wrote the scroll-driven animation, the layout compensation, the app infrastructure that attaches a footer to any screen, and the server API that carries it all. Both the technical design of the footer and the API were reused for the Android version.
+
+<Gallery narrow caption="The same product page in the iOS app. With the action footer, Add to cart sits just above the tab bar instead of further down the page.">
+  <Figure src="/projects/shopping-ios-app/footer-before.webp" frame="phone" alt="The Shopping app's product page for a Corsair gaming mouse on iOS: the product photo, the title, a short description, a star rating with 1,020 reviews, and the price, $17.99 down from $29.99, just above the tab bar." caption="Without the footer" />
+  <Figure src="/projects/shopping-ios-app/footer-after.webp" frame="phone" alt="The same product page with the action footer just above the tab bar: a share button, a save button, and a wide blue Add to cart button." caption="With the footer" />
+</Gallery>
+
+**Share to compare.** I built an iOS share extension from scratch that sends a product shared from any app into a Shopping search. This required a major rework of the app infrastructure to allow passing in extension context, in order for the shared information to make it into the app on load. The extension takes any web URL or shareable text, parses its contents into a search-friendly format, and passes it along to the product search screen. Prototype to release took about three months, and it shipped in the fall of 2020.
+
+<Figure src="/projects/shopping-ios-app/share-to-compare.svg" wide alt="Three phone screens, left to right. On another app's product page for a desk lamp, the Share button is circled. In the share sheet over that page, the Shopping tile is circled in the row of apps, which runs off the edge of the screen. Between the second and third screens, the shared title and link, Desk lamp and example.com/desk-lamp, become a search for desk lamp, and the Shopping app loads on its search screen with desk lamp already in the search field." caption="Tapping Shopping in another app's share sheet hands the shared link or text to the extension, which turns it into a search. The Shopping app loads on its search screen with that search already filled in." />
+
+**Price tracking.** I built the price tracking feature full-stack, on both iOS and the server, and owned the launch on iOS and Android. The existing web price tracking lacked a solid presentation response. I designed a presentation-ready structure that could be easily consumed by the mobile client to render the unit, and also designed an easy algorithm to display the price bands flexibly on mobile.
+
+**Checkout and the product page.** In 2019 I built a new order confirmation on the client and the server-driven UI; it groups items by delivery date and links to the order details. I also added the card-security-code challenge to checkout and the carbon-offset messaging. In 2020 I shipped AR View in 3D on product pages and built a Flutter add-to-app entry point for browse, one of the first Google apps to embed Flutter that way. I raised the minimum iOS version, which sharply cut the binary size, and migrated the product page's core modules (offers, the bottom sheet, add-to-cart, price, and merchant) to a new shared component architecture.
+
+**Privacy labels.** The app's final update depended on its App Store privacy labels being right, and I led that work with the privacy and legal teams. The shutdown was announced in April 2021, I helped wind the app down, and I moved to Shopping on Google Search.
+
+<Callout kind="tradeoff" title="Delayed on iOS, but launched on Android">
+
+The action footer exposed a critical bug in our iOS app logging, disguised as bad metrics: the metric logger counted every individual button appearance as a view event, blowing up impression metrics and crashing click-through rate. The trade-off was not easy to negotiate: break the metrics, or turn off a feature mid-rollout? The team followed my recommendation: we delayed the iOS launch and fully launched on Android, while we fixed the metric system to unblock iOS for the next app update.
+
+</Callout>
+
+<Callout kind="lesson" title="Own the server half">
+
+Writing the server half myself meant my features never waited on a partner team. Price tracking shipped with its server API, and the action footer's API was built alongside the UI and reused by Android.
+
+</Callout>

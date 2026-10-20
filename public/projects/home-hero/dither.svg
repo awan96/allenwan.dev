@@ -1,0 +1,145 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 484" width="1200" height="484" role="img" aria-labelledby="t">
+  <title id="t">The 4×4 Bayer tile, numbered 0 to 15, with the eight lowest numbers already turned to night. Beside it, six steps of a dusk-to-night blend, 2, 4, 8, 12, 14, and 16 pixels of every 16: in Bayer order each step is an even texture, and in reading order the same steps come in as stripes.</title>
+  <style>
+    :root { --ink: #1a1a18; --paper: #f6efdd; --muted: #62625c; --rule: #1a1a18; }
+    .dark { display: none; }
+    @media (prefers-color-scheme: dark) {
+      :root { --ink: #eeece6; --paper: #111110; --muted: #9c9c94; --rule: rgba(238,236,230,0.55); }
+      .light { display: none; }
+      .dark { display: inline; }
+    }
+    .paper { fill: var(--paper); }
+    .label { font-family: "Sometype Mono", ui-monospace, Menlo, monospace; font-size: 20px; letter-spacing: 0.06em; text-transform: uppercase; fill: var(--ink); }
+    .small { font-family: "Sometype Mono", ui-monospace, Menlo, monospace; font-size: 17px; letter-spacing: 0.02em; fill: var(--muted); }
+    .num { font-family: "Sometype Mono", ui-monospace, Menlo, monospace; font-size: 20px; fill: #f6efdd; }
+    .grid { stroke: var(--paper); stroke-width: 2; }
+    .frame { fill: none; stroke: var(--rule); stroke-width: 2; }
+  </style>
+  <rect class="paper" x="0" y="0" width="1200" height="484"/>
+  <g class="light">
+    <rect x="24" y="78" width="48" height="48" fill="#182438"/>
+    <text class="num" x="48" y="109" text-anchor="middle">0</text>
+    <rect x="72" y="78" width="48" height="48" fill="#523c66"/>
+    <text class="num" x="96" y="109" text-anchor="middle">8</text>
+    <rect x="120" y="78" width="48" height="48" fill="#182438"/>
+    <text class="num" x="144" y="109" text-anchor="middle">2</text>
+    <rect x="168" y="78" width="48" height="48" fill="#523c66"/>
+    <text class="num" x="192" y="109" text-anchor="middle">10</text>
+    <rect x="24" y="126" width="48" height="48" fill="#523c66"/>
+    <text class="num" x="48" y="157" text-anchor="middle">12</text>
+    <rect x="72" y="126" width="48" height="48" fill="#182438"/>
+    <text class="num" x="96" y="157" text-anchor="middle">4</text>
+    <rect x="120" y="126" width="48" height="48" fill="#523c66"/>
+    <text class="num" x="144" y="157" text-anchor="middle">14</text>
+    <rect x="168" y="126" width="48" height="48" fill="#182438"/>
+    <text class="num" x="192" y="157" text-anchor="middle">6</text>
+    <rect x="24" y="174" width="48" height="48" fill="#182438"/>
+    <text class="num" x="48" y="205" text-anchor="middle">3</text>
+    <rect x="72" y="174" width="48" height="48" fill="#523c66"/>
+    <text class="num" x="96" y="205" text-anchor="middle">11</text>
+    <rect x="120" y="174" width="48" height="48" fill="#182438"/>
+    <text class="num" x="144" y="205" text-anchor="middle">1</text>
+    <rect x="168" y="174" width="48" height="48" fill="#523c66"/>
+    <text class="num" x="192" y="205" text-anchor="middle">9</text>
+    <rect x="24" y="222" width="48" height="48" fill="#523c66"/>
+    <text class="num" x="48" y="253" text-anchor="middle">15</text>
+    <rect x="72" y="222" width="48" height="48" fill="#182438"/>
+    <text class="num" x="96" y="253" text-anchor="middle">7</text>
+    <rect x="120" y="222" width="48" height="48" fill="#523c66"/>
+    <text class="num" x="144" y="253" text-anchor="middle">13</text>
+    <rect x="168" y="222" width="48" height="48" fill="#182438"/>
+    <text class="num" x="192" y="253" text-anchor="middle">5</text>
+    <rect x="330" y="78" width="112" height="112" fill="#523c66"/>
+    <path fill="#182438" d="M330 78h7v7h-7zM358 78h7v7h-7zM386 78h7v7h-7zM414 78h7v7h-7zM344 92h7v7h-7zM372 92h7v7h-7zM400 92h7v7h-7zM428 92h7v7h-7zM330 106h7v7h-7zM358 106h7v7h-7zM386 106h7v7h-7zM414 106h7v7h-7zM344 120h7v7h-7zM372 120h7v7h-7zM400 120h7v7h-7zM428 120h7v7h-7zM330 134h7v7h-7zM358 134h7v7h-7zM386 134h7v7h-7zM414 134h7v7h-7zM344 148h7v7h-7zM372 148h7v7h-7zM400 148h7v7h-7zM428 148h7v7h-7zM330 162h7v7h-7zM358 162h7v7h-7zM386 162h7v7h-7zM414 162h7v7h-7zM344 176h7v7h-7zM372 176h7v7h-7zM400 176h7v7h-7zM428 176h7v7h-7z"/>
+    <rect x="464" y="78" width="112" height="112" fill="#523c66"/>
+    <path fill="#182438" d="M464 78h7v7h-7zM478 78h7v7h-7zM492 78h7v7h-7zM506 78h7v7h-7zM520 78h7v7h-7zM534 78h7v7h-7zM548 78h7v7h-7zM562 78h7v7h-7zM464 92h7v7h-7zM478 92h7v7h-7zM492 92h7v7h-7zM506 92h7v7h-7zM520 92h7v7h-7zM534 92h7v7h-7zM548 92h7v7h-7zM562 92h7v7h-7zM464 106h7v7h-7zM478 106h7v7h-7zM492 106h7v7h-7zM506 106h7v7h-7zM520 106h7v7h-7zM534 106h7v7h-7zM548 106h7v7h-7zM562 106h7v7h-7zM464 120h7v7h-7zM478 120h7v7h-7zM492 120h7v7h-7zM506 120h7v7h-7zM520 120h7v7h-7zM534 120h7v7h-7zM548 120h7v7h-7zM562 120h7v7h-7zM464 134h7v7h-7zM478 134h7v7h-7zM492 134h7v7h-7zM506 134h7v7h-7zM520 134h7v7h-7zM534 134h7v7h-7zM548 134h7v7h-7zM562 134h7v7h-7zM464 148h7v7h-7zM478 148h7v7h-7zM492 148h7v7h-7zM506 148h7v7h-7zM520 148h7v7h-7zM534 148h7v7h-7zM548 148h7v7h-7zM562 148h7v7h-7zM464 162h7v7h-7zM478 162h7v7h-7zM492 162h7v7h-7zM506 162h7v7h-7zM520 162h7v7h-7zM534 162h7v7h-7zM548 162h7v7h-7zM562 162h7v7h-7zM464 176h7v7h-7zM478 176h7v7h-7zM492 176h7v7h-7zM506 176h7v7h-7zM520 176h7v7h-7zM534 176h7v7h-7zM548 176h7v7h-7zM562 176h7v7h-7z"/>
+    <rect x="598" y="78" width="112" height="112" fill="#523c66"/>
+    <path fill="#182438" d="M598 78h7v7h-7zM612 78h7v7h-7zM626 78h7v7h-7zM640 78h7v7h-7zM654 78h7v7h-7zM668 78h7v7h-7zM682 78h7v7h-7zM696 78h7v7h-7zM605 85h7v7h-7zM619 85h7v7h-7zM633 85h7v7h-7zM647 85h7v7h-7zM661 85h7v7h-7zM675 85h7v7h-7zM689 85h7v7h-7zM703 85h7v7h-7zM598 92h7v7h-7zM612 92h7v7h-7zM626 92h7v7h-7zM640 92h7v7h-7zM654 92h7v7h-7zM668 92h7v7h-7zM682 92h7v7h-7zM696 92h7v7h-7zM605 99h7v7h-7zM619 99h7v7h-7zM633 99h7v7h-7zM647 99h7v7h-7zM661 99h7v7h-7zM675 99h7v7h-7zM689 99h7v7h-7zM703 99h7v7h-7zM598 106h7v7h-7zM612 106h7v7h-7zM626 106h7v7h-7zM640 106h7v7h-7zM654 106h7v7h-7zM668 106h7v7h-7zM682 106h7v7h-7zM696 106h7v7h-7zM605 113h7v7h-7zM619 113h7v7h-7zM633 113h7v7h-7zM647 113h7v7h-7zM661 113h7v7h-7zM675 113h7v7h-7zM689 113h7v7h-7zM703 113h7v7h-7zM598 120h7v7h-7zM612 120h7v7h-7zM626 120h7v7h-7zM640 120h7v7h-7zM654 120h7v7h-7zM668 120h7v7h-7zM682 120h7v7h-7zM696 120h7v7h-7zM605 127h7v7h-7zM619 127h7v7h-7zM633 127h7v7h-7zM647 127h7v7h-7zM661 127h7v7h-7zM675 127h7v7h-7zM689 127h7v7h-7zM703 127h7v7h-7zM598 134h7v7h-7zM612 134h7v7h-7zM626 134h7v7h-7zM640 134h7v7h-7zM654 134h7v7h-7zM668 134h7v7h-7zM682 134h7v7h-7zM696 134h7v7h-7zM605 141h7v7h-7zM619 141h7v7h-7zM633 141h7v7h-7zM647 141h7v7h-7zM661 141h7v7h-7zM675 141h7v7h-7zM689 141h7v7h-7zM703 141h7v7h-7zM598 148h7v7h-7zM612 148h7v7h-7zM626 148h7v7h-7zM640 148h7v7h-7zM654 148h7v7h-7zM668 148h7v7h-7zM682 148h7v7h-7zM696 148h7v7h-7zM605 155h7v7h-7zM619 155h7v7h-7zM633 155h7v7h-7zM647 155h7v7h-7zM661 155h7v7h-7zM675 155h7v7h-7zM689 155h7v7h-7zM703 155h7v7h-7zM598 162h7v7h-7zM612 162h7v7h-7zM626 162h7v7h-7zM640 162h7v7h-7zM654 162h7v7h-7zM668 162h7v7h-7zM682 162h7v7h-7zM696 162h7v7h-7zM605 169h7v7h-7zM619 169h7v7h-7zM633 169h7v7h-7zM647 169h7v7h-7zM661 169h7v7h-7zM675 169h7v7h-7zM689 169h7v7h-7zM703 169h7v7h-7zM598 176h7v7h-7zM612 176h7v7h-7zM626 176h7v7h-7zM640 176h7v7h-7zM654 176h7v7h-7zM668 176h7v7h-7zM682 176h7v7h-7zM696 176h7v7h-7zM605 183h7v7h-7zM619 183h7v7h-7zM633 183h7v7h-7zM647 183h7v7h-7zM661 183h7v7h-7zM675 183h7v7h-7zM689 183h7v7h-7zM703 183h7v7h-7z"/>
+    <rect x="732" y="78" width="112" height="112" fill="#523c66"/>
+    <path fill="#182438" d="M732 78h112v7h-112zM739 85h7v7h-7zM753 85h7v7h-7zM767 85h7v7h-7zM781 85h7v7h-7zM795 85h7v7h-7zM809 85h7v7h-7zM823 85h7v7h-7zM837 85h7v7h-7zM732 92h112v7h-112zM739 99h7v7h-7zM753 99h7v7h-7zM767 99h7v7h-7zM781 99h7v7h-7zM795 99h7v7h-7zM809 99h7v7h-7zM823 99h7v7h-7zM837 99h7v7h-7zM732 106h112v7h-112zM739 113h7v7h-7zM753 113h7v7h-7zM767 113h7v7h-7zM781 113h7v7h-7zM795 113h7v7h-7zM809 113h7v7h-7zM823 113h7v7h-7zM837 113h7v7h-7zM732 120h112v7h-112zM739 127h7v7h-7zM753 127h7v7h-7zM767 127h7v7h-7zM781 127h7v7h-7zM795 127h7v7h-7zM809 127h7v7h-7zM823 127h7v7h-7zM837 127h7v7h-7zM732 134h112v7h-112zM739 141h7v7h-7zM753 141h7v7h-7zM767 141h7v7h-7zM781 141h7v7h-7zM795 141h7v7h-7zM809 141h7v7h-7zM823 141h7v7h-7zM837 141h7v7h-7zM732 148h112v7h-112zM739 155h7v7h-7zM753 155h7v7h-7zM767 155h7v7h-7zM781 155h7v7h-7zM795 155h7v7h-7zM809 155h7v7h-7zM823 155h7v7h-7zM837 155h7v7h-7zM732 162h112v7h-112zM739 169h7v7h-7zM753 169h7v7h-7zM767 169h7v7h-7zM781 169h7v7h-7zM795 169h7v7h-7zM809 169h7v7h-7zM823 169h7v7h-7zM837 169h7v7h-7zM732 176h112v7h-112zM739 183h7v7h-7zM753 183h7v7h-7zM767 183h7v7h-7zM781 183h7v7h-7zM795 183h7v7h-7zM809 183h7v7h-7zM823 183h7v7h-7zM837 183h7v7h-7z"/>
+    <rect x="866" y="78" width="112" height="112" fill="#523c66"/>
+    <path fill="#182438" d="M866 78h112v7h-112zM866 85h14v7h-14zM887 85h21v7h-21zM915 85h21v7h-21zM943 85h21v7h-21zM971 85h7v7h-7zM866 92h112v7h-112zM873 99h21v7h-21zM901 99h21v7h-21zM929 99h21v7h-21zM957 99h21v7h-21zM866 106h112v7h-112zM866 113h14v7h-14zM887 113h21v7h-21zM915 113h21v7h-21zM943 113h21v7h-21zM971 113h7v7h-7zM866 120h112v7h-112zM873 127h21v7h-21zM901 127h21v7h-21zM929 127h21v7h-21zM957 127h21v7h-21zM866 134h112v7h-112zM866 141h14v7h-14zM887 141h21v7h-21zM915 141h21v7h-21zM943 141h21v7h-21zM971 141h7v7h-7zM866 148h112v7h-112zM873 155h21v7h-21zM901 155h21v7h-21zM929 155h21v7h-21zM957 155h21v7h-21zM866 162h112v7h-112zM866 169h14v7h-14zM887 169h21v7h-21zM915 169h21v7h-21zM943 169h21v7h-21zM971 169h7v7h-7zM866 176h112v7h-112zM873 183h21v7h-21zM901 183h21v7h-21zM929 183h21v7h-21zM957 183h21v7h-21z"/>
+    <rect x="1000" y="78" width="112" height="112" fill="#523c66"/>
+    <path fill="#182438" d="M1000 78h112v7h-112zM1000 85h112v7h-112zM1000 92h112v7h-112zM1000 99h112v7h-112zM1000 106h112v7h-112zM1000 113h112v7h-112zM1000 120h112v7h-112zM1000 127h112v7h-112zM1000 134h112v7h-112zM1000 141h112v7h-112zM1000 148h112v7h-112zM1000 155h112v7h-112zM1000 162h112v7h-112zM1000 169h112v7h-112zM1000 176h112v7h-112zM1000 183h112v7h-112z"/>
+    <rect x="330" y="302" width="112" height="112" fill="#523c66"/>
+    <path fill="#182438" d="M330 302h14v7h-14zM358 302h14v7h-14zM386 302h14v7h-14zM414 302h14v7h-14zM330 330h14v7h-14zM358 330h14v7h-14zM386 330h14v7h-14zM414 330h14v7h-14zM330 358h14v7h-14zM358 358h14v7h-14zM386 358h14v7h-14zM414 358h14v7h-14zM330 386h14v7h-14zM358 386h14v7h-14zM386 386h14v7h-14zM414 386h14v7h-14z"/>
+    <rect x="464" y="302" width="112" height="112" fill="#523c66"/>
+    <path fill="#182438" d="M464 302h112v7h-112zM464 330h112v7h-112zM464 358h112v7h-112zM464 386h112v7h-112z"/>
+    <rect x="598" y="302" width="112" height="112" fill="#523c66"/>
+    <path fill="#182438" d="M598 302h112v7h-112zM598 309h112v7h-112zM598 330h112v7h-112zM598 337h112v7h-112zM598 358h112v7h-112zM598 365h112v7h-112zM598 386h112v7h-112zM598 393h112v7h-112z"/>
+    <rect x="732" y="302" width="112" height="112" fill="#523c66"/>
+    <path fill="#182438" d="M732 302h112v7h-112zM732 309h112v7h-112zM732 316h112v7h-112zM732 330h112v7h-112zM732 337h112v7h-112zM732 344h112v7h-112zM732 358h112v7h-112zM732 365h112v7h-112zM732 372h112v7h-112zM732 386h112v7h-112zM732 393h112v7h-112zM732 400h112v7h-112z"/>
+    <rect x="866" y="302" width="112" height="112" fill="#523c66"/>
+    <path fill="#182438" d="M866 302h112v7h-112zM866 309h112v7h-112zM866 316h112v7h-112zM866 323h14v7h-14zM894 323h14v7h-14zM922 323h14v7h-14zM950 323h14v7h-14zM866 330h112v7h-112zM866 337h112v7h-112zM866 344h112v7h-112zM866 351h14v7h-14zM894 351h14v7h-14zM922 351h14v7h-14zM950 351h14v7h-14zM866 358h112v7h-112zM866 365h112v7h-112zM866 372h112v7h-112zM866 379h14v7h-14zM894 379h14v7h-14zM922 379h14v7h-14zM950 379h14v7h-14zM866 386h112v7h-112zM866 393h112v7h-112zM866 400h112v7h-112zM866 407h14v7h-14zM894 407h14v7h-14zM922 407h14v7h-14zM950 407h14v7h-14z"/>
+    <rect x="1000" y="302" width="112" height="112" fill="#523c66"/>
+    <path fill="#182438" d="M1000 302h112v7h-112zM1000 309h112v7h-112zM1000 316h112v7h-112zM1000 323h112v7h-112zM1000 330h112v7h-112zM1000 337h112v7h-112zM1000 344h112v7h-112zM1000 351h112v7h-112zM1000 358h112v7h-112zM1000 365h112v7h-112zM1000 372h112v7h-112zM1000 379h112v7h-112zM1000 386h112v7h-112zM1000 393h112v7h-112zM1000 400h112v7h-112zM1000 407h112v7h-112z"/>
+  </g>
+  <g class="dark">
+    <rect x="24" y="78" width="48" height="48" fill="#131d2e"/>
+    <text class="num" x="48" y="109" text-anchor="middle">0</text>
+    <rect x="72" y="78" width="48" height="48" fill="#452f51"/>
+    <text class="num" x="96" y="109" text-anchor="middle">8</text>
+    <rect x="120" y="78" width="48" height="48" fill="#131d2e"/>
+    <text class="num" x="144" y="109" text-anchor="middle">2</text>
+    <rect x="168" y="78" width="48" height="48" fill="#452f51"/>
+    <text class="num" x="192" y="109" text-anchor="middle">10</text>
+    <rect x="24" y="126" width="48" height="48" fill="#452f51"/>
+    <text class="num" x="48" y="157" text-anchor="middle">12</text>
+    <rect x="72" y="126" width="48" height="48" fill="#131d2e"/>
+    <text class="num" x="96" y="157" text-anchor="middle">4</text>
+    <rect x="120" y="126" width="48" height="48" fill="#452f51"/>
+    <text class="num" x="144" y="157" text-anchor="middle">14</text>
+    <rect x="168" y="126" width="48" height="48" fill="#131d2e"/>
+    <text class="num" x="192" y="157" text-anchor="middle">6</text>
+    <rect x="24" y="174" width="48" height="48" fill="#131d2e"/>
+    <text class="num" x="48" y="205" text-anchor="middle">3</text>
+    <rect x="72" y="174" width="48" height="48" fill="#452f51"/>
+    <text class="num" x="96" y="205" text-anchor="middle">11</text>
+    <rect x="120" y="174" width="48" height="48" fill="#131d2e"/>
+    <text class="num" x="144" y="205" text-anchor="middle">1</text>
+    <rect x="168" y="174" width="48" height="48" fill="#452f51"/>
+    <text class="num" x="192" y="205" text-anchor="middle">9</text>
+    <rect x="24" y="222" width="48" height="48" fill="#452f51"/>
+    <text class="num" x="48" y="253" text-anchor="middle">15</text>
+    <rect x="72" y="222" width="48" height="48" fill="#131d2e"/>
+    <text class="num" x="96" y="253" text-anchor="middle">7</text>
+    <rect x="120" y="222" width="48" height="48" fill="#452f51"/>
+    <text class="num" x="144" y="253" text-anchor="middle">13</text>
+    <rect x="168" y="222" width="48" height="48" fill="#131d2e"/>
+    <text class="num" x="192" y="253" text-anchor="middle">5</text>
+    <rect x="330" y="78" width="112" height="112" fill="#452f51"/>
+    <path fill="#131d2e" d="M330 78h7v7h-7zM358 78h7v7h-7zM386 78h7v7h-7zM414 78h7v7h-7zM344 92h7v7h-7zM372 92h7v7h-7zM400 92h7v7h-7zM428 92h7v7h-7zM330 106h7v7h-7zM358 106h7v7h-7zM386 106h7v7h-7zM414 106h7v7h-7zM344 120h7v7h-7zM372 120h7v7h-7zM400 120h7v7h-7zM428 120h7v7h-7zM330 134h7v7h-7zM358 134h7v7h-7zM386 134h7v7h-7zM414 134h7v7h-7zM344 148h7v7h-7zM372 148h7v7h-7zM400 148h7v7h-7zM428 148h7v7h-7zM330 162h7v7h-7zM358 162h7v7h-7zM386 162h7v7h-7zM414 162h7v7h-7zM344 176h7v7h-7zM372 176h7v7h-7zM400 176h7v7h-7zM428 176h7v7h-7z"/>
+    <rect x="464" y="78" width="112" height="112" fill="#452f51"/>
+    <path fill="#131d2e" d="M464 78h7v7h-7zM478 78h7v7h-7zM492 78h7v7h-7zM506 78h7v7h-7zM520 78h7v7h-7zM534 78h7v7h-7zM548 78h7v7h-7zM562 78h7v7h-7zM464 92h7v7h-7zM478 92h7v7h-7zM492 92h7v7h-7zM506 92h7v7h-7zM520 92h7v7h-7zM534 92h7v7h-7zM548 92h7v7h-7zM562 92h7v7h-7zM464 106h7v7h-7zM478 106h7v7h-7zM492 106h7v7h-7zM506 106h7v7h-7zM520 106h7v7h-7zM534 106h7v7h-7zM548 106h7v7h-7zM562 106h7v7h-7zM464 120h7v7h-7zM478 120h7v7h-7zM492 120h7v7h-7zM506 120h7v7h-7zM520 120h7v7h-7zM534 120h7v7h-7zM548 120h7v7h-7zM562 120h7v7h-7zM464 134h7v7h-7zM478 134h7v7h-7zM492 134h7v7h-7zM506 134h7v7h-7zM520 134h7v7h-7zM534 134h7v7h-7zM548 134h7v7h-7zM562 134h7v7h-7zM464 148h7v7h-7zM478 148h7v7h-7zM492 148h7v7h-7zM506 148h7v7h-7zM520 148h7v7h-7zM534 148h7v7h-7zM548 148h7v7h-7zM562 148h7v7h-7zM464 162h7v7h-7zM478 162h7v7h-7zM492 162h7v7h-7zM506 162h7v7h-7zM520 162h7v7h-7zM534 162h7v7h-7zM548 162h7v7h-7zM562 162h7v7h-7zM464 176h7v7h-7zM478 176h7v7h-7zM492 176h7v7h-7zM506 176h7v7h-7zM520 176h7v7h-7zM534 176h7v7h-7zM548 176h7v7h-7zM562 176h7v7h-7z"/>
+    <rect x="598" y="78" width="112" height="112" fill="#452f51"/>
+    <path fill="#131d2e" d="M598 78h7v7h-7zM612 78h7v7h-7zM626 78h7v7h-7zM640 78h7v7h-7zM654 78h7v7h-7zM668 78h7v7h-7zM682 78h7v7h-7zM696 78h7v7h-7zM605 85h7v7h-7zM619 85h7v7h-7zM633 85h7v7h-7zM647 85h7v7h-7zM661 85h7v7h-7zM675 85h7v7h-7zM689 85h7v7h-7zM703 85h7v7h-7zM598 92h7v7h-7zM612 92h7v7h-7zM626 92h7v7h-7zM640 92h7v7h-7zM654 92h7v7h-7zM668 92h7v7h-7zM682 92h7v7h-7zM696 92h7v7h-7zM605 99h7v7h-7zM619 99h7v7h-7zM633 99h7v7h-7zM647 99h7v7h-7zM661 99h7v7h-7zM675 99h7v7h-7zM689 99h7v7h-7zM703 99h7v7h-7zM598 106h7v7h-7zM612 106h7v7h-7zM626 106h7v7h-7zM640 106h7v7h-7zM654 106h7v7h-7zM668 106h7v7h-7zM682 106h7v7h-7zM696 106h7v7h-7zM605 113h7v7h-7zM619 113h7v7h-7zM633 113h7v7h-7zM647 113h7v7h-7zM661 113h7v7h-7zM675 113h7v7h-7zM689 113h7v7h-7zM703 113h7v7h-7zM598 120h7v7h-7zM612 120h7v7h-7zM626 120h7v7h-7zM640 120h7v7h-7zM654 120h7v7h-7zM668 120h7v7h-7zM682 120h7v7h-7zM696 120h7v7h-7zM605 127h7v7h-7zM619 127h7v7h-7zM633 127h7v7h-7zM647 127h7v7h-7zM661 127h7v7h-7zM675 127h7v7h-7zM689 127h7v7h-7zM703 127h7v7h-7zM598 134h7v7h-7zM612 134h7v7h-7zM626 134h7v7h-7zM640 134h7v7h-7zM654 134h7v7h-7zM668 134h7v7h-7zM682 134h7v7h-7zM696 134h7v7h-7zM605 141h7v7h-7zM619 141h7v7h-7zM633 141h7v7h-7zM647 141h7v7h-7zM661 141h7v7h-7zM675 141h7v7h-7zM689 141h7v7h-7zM703 141h7v7h-7zM598 148h7v7h-7zM612 148h7v7h-7zM626 148h7v7h-7zM640 148h7v7h-7zM654 148h7v7h-7zM668 148h7v7h-7zM682 148h7v7h-7zM696 148h7v7h-7zM605 155h7v7h-7zM619 155h7v7h-7zM633 155h7v7h-7zM647 155h7v7h-7zM661 155h7v7h-7zM675 155h7v7h-7zM689 155h7v7h-7zM703 155h7v7h-7zM598 162h7v7h-7zM612 162h7v7h-7zM626 162h7v7h-7zM640 162h7v7h-7zM654 162h7v7h-7zM668 162h7v7h-7zM682 162h7v7h-7zM696 162h7v7h-7zM605 169h7v7h-7zM619 169h7v7h-7zM633 169h7v7h-7zM647 169h7v7h-7zM661 169h7v7h-7zM675 169h7v7h-7zM689 169h7v7h-7zM703 169h7v7h-7zM598 176h7v7h-7zM612 176h7v7h-7zM626 176h7v7h-7zM640 176h7v7h-7zM654 176h7v7h-7zM668 176h7v7h-7zM682 176h7v7h-7zM696 176h7v7h-7zM605 183h7v7h-7zM619 183h7v7h-7zM633 183h7v7h-7zM647 183h7v7h-7zM661 183h7v7h-7zM675 183h7v7h-7zM689 183h7v7h-7zM703 183h7v7h-7z"/>
+    <rect x="732" y="78" width="112" height="112" fill="#452f51"/>
+    <path fill="#131d2e" d="M732 78h112v7h-112zM739 85h7v7h-7zM753 85h7v7h-7zM767 85h7v7h-7zM781 85h7v7h-7zM795 85h7v7h-7zM809 85h7v7h-7zM823 85h7v7h-7zM837 85h7v7h-7zM732 92h112v7h-112zM739 99h7v7h-7zM753 99h7v7h-7zM767 99h7v7h-7zM781 99h7v7h-7zM795 99h7v7h-7zM809 99h7v7h-7zM823 99h7v7h-7zM837 99h7v7h-7zM732 106h112v7h-112zM739 113h7v7h-7zM753 113h7v7h-7zM767 113h7v7h-7zM781 113h7v7h-7zM795 113h7v7h-7zM809 113h7v7h-7zM823 113h7v7h-7zM837 113h7v7h-7zM732 120h112v7h-112zM739 127h7v7h-7zM753 127h7v7h-7zM767 127h7v7h-7zM781 127h7v7h-7zM795 127h7v7h-7zM809 127h7v7h-7zM823 127h7v7h-7zM837 127h7v7h-7zM732 134h112v7h-112zM739 141h7v7h-7zM753 141h7v7h-7zM767 141h7v7h-7zM781 141h7v7h-7zM795 141h7v7h-7zM809 141h7v7h-7zM823 141h7v7h-7zM837 141h7v7h-7zM732 148h112v7h-112zM739 155h7v7h-7zM753 155h7v7h-7zM767 155h7v7h-7zM781 155h7v7h-7zM795 155h7v7h-7zM809 155h7v7h-7zM823 155h7v7h-7zM837 155h7v7h-7zM732 162h112v7h-112zM739 169h7v7h-7zM753 169h7v7h-7zM767 169h7v7h-7zM781 169h7v7h-7zM795 169h7v7h-7zM809 169h7v7h-7zM823 169h7v7h-7zM837 169h7v7h-7zM732 176h112v7h-112zM739 183h7v7h-7zM753 183h7v7h-7zM767 183h7v7h-7zM781 183h7v7h-7zM795 183h7v7h-7zM809 183h7v7h-7zM823 183h7v7h-7zM837 183h7v7h-7z"/>
+    <rect x="866" y="78" width="112" height="112" fill="#452f51"/>
+    <path fill="#131d2e" d="M866 78h112v7h-112zM866 85h14v7h-14zM887 85h21v7h-21zM915 85h21v7h-21zM943 85h21v7h-21zM971 85h7v7h-7zM866 92h112v7h-112zM873 99h21v7h-21zM901 99h21v7h-21zM929 99h21v7h-21zM957 99h21v7h-21zM866 106h112v7h-112zM866 113h14v7h-14zM887 113h21v7h-21zM915 113h21v7h-21zM943 113h21v7h-21zM971 113h7v7h-7zM866 120h112v7h-112zM873 127h21v7h-21zM901 127h21v7h-21zM929 127h21v7h-21zM957 127h21v7h-21zM866 134h112v7h-112zM866 141h14v7h-14zM887 141h21v7h-21zM915 141h21v7h-21zM943 141h21v7h-21zM971 141h7v7h-7zM866 148h112v7h-112zM873 155h21v7h-21zM901 155h21v7h-21zM929 155h21v7h-21zM957 155h21v7h-21zM866 162h112v7h-112zM866 169h14v7h-14zM887 169h21v7h-21zM915 169h21v7h-21zM943 169h21v7h-21zM971 169h7v7h-7zM866 176h112v7h-112zM873 183h21v7h-21zM901 183h21v7h-21zM929 183h21v7h-21zM957 183h21v7h-21z"/>
+    <rect x="1000" y="78" width="112" height="112" fill="#452f51"/>
+    <path fill="#131d2e" d="M1000 78h112v7h-112zM1000 85h112v7h-112zM1000 92h112v7h-112zM1000 99h112v7h-112zM1000 106h112v7h-112zM1000 113h112v7h-112zM1000 120h112v7h-112zM1000 127h112v7h-112zM1000 134h112v7h-112zM1000 141h112v7h-112zM1000 148h112v7h-112zM1000 155h112v7h-112zM1000 162h112v7h-112zM1000 169h112v7h-112zM1000 176h112v7h-112zM1000 183h112v7h-112z"/>
+    <rect x="330" y="302" width="112" height="112" fill="#452f51"/>
+    <path fill="#131d2e" d="M330 302h14v7h-14zM358 302h14v7h-14zM386 302h14v7h-14zM414 302h14v7h-14zM330 330h14v7h-14zM358 330h14v7h-14zM386 330h14v7h-14zM414 330h14v7h-14zM330 358h14v7h-14zM358 358h14v7h-14zM386 358h14v7h-14zM414 358h14v7h-14zM330 386h14v7h-14zM358 386h14v7h-14zM386 386h14v7h-14zM414 386h14v7h-14z"/>
+    <rect x="464" y="302" width="112" height="112" fill="#452f51"/>
+    <path fill="#131d2e" d="M464 302h112v7h-112zM464 330h112v7h-112zM464 358h112v7h-112zM464 386h112v7h-112z"/>
+    <rect x="598" y="302" width="112" height="112" fill="#452f51"/>
+    <path fill="#131d2e" d="M598 302h112v7h-112zM598 309h112v7h-112zM598 330h112v7h-112zM598 337h112v7h-112zM598 358h112v7h-112zM598 365h112v7h-112zM598 386h112v7h-112zM598 393h112v7h-112z"/>
+    <rect x="732" y="302" width="112" height="112" fill="#452f51"/>
+    <path fill="#131d2e" d="M732 302h112v7h-112zM732 309h112v7h-112zM732 316h112v7h-112zM732 330h112v7h-112zM732 337h112v7h-112zM732 344h112v7h-112zM732 358h112v7h-112zM732 365h112v7h-112zM732 372h112v7h-112zM732 386h112v7h-112zM732 393h112v7h-112zM732 400h112v7h-112z"/>
+    <rect x="866" y="302" width="112" height="112" fill="#452f51"/>
+    <path fill="#131d2e" d="M866 302h112v7h-112zM866 309h112v7h-112zM866 316h112v7h-112zM866 323h14v7h-14zM894 323h14v7h-14zM922 323h14v7h-14zM950 323h14v7h-14zM866 330h112v7h-112zM866 337h112v7h-112zM866 344h112v7h-112zM866 351h14v7h-14zM894 351h14v7h-14zM922 351h14v7h-14zM950 351h14v7h-14zM866 358h112v7h-112zM866 365h112v7h-112zM866 372h112v7h-112zM866 379h14v7h-14zM894 379h14v7h-14zM922 379h14v7h-14zM950 379h14v7h-14zM866 386h112v7h-112zM866 393h112v7h-112zM866 400h112v7h-112zM866 407h14v7h-14zM894 407h14v7h-14zM922 407h14v7h-14zM950 407h14v7h-14z"/>
+    <rect x="1000" y="302" width="112" height="112" fill="#452f51"/>
+    <path fill="#131d2e" d="M1000 302h112v7h-112zM1000 309h112v7h-112zM1000 316h112v7h-112zM1000 323h112v7h-112zM1000 330h112v7h-112zM1000 337h112v7h-112zM1000 344h112v7h-112zM1000 351h112v7h-112zM1000 358h112v7h-112zM1000 365h112v7h-112zM1000 372h112v7h-112zM1000 379h112v7h-112zM1000 386h112v7h-112zM1000 393h112v7h-112zM1000 400h112v7h-112zM1000 407h112v7h-112z"/>
+  </g>
+  <line class="grid" x1="24" y1="78" x2="24" y2="270"/><line class="grid" x1="24" y1="78" x2="216" y2="78"/><line class="grid" x1="72" y1="78" x2="72" y2="270"/><line class="grid" x1="24" y1="126" x2="216" y2="126"/><line class="grid" x1="120" y1="78" x2="120" y2="270"/><line class="grid" x1="24" y1="174" x2="216" y2="174"/><line class="grid" x1="168" y1="78" x2="168" y2="270"/><line class="grid" x1="24" y1="222" x2="216" y2="222"/><line class="grid" x1="216" y1="78" x2="216" y2="270"/><line class="grid" x1="24" y1="270" x2="216" y2="270"/>
+  <rect class="frame" x="24" y="78" width="192" height="192"/>
+  <text class="label" x="24" y="54">The tile</text>
+  <text class="small" x="24" y="304">A pixel turns once the</text>
+  <text class="small" x="24" y="328">step passes its number.</text>
+  <text class="small" x="24" y="352">Shown at 8 of 16.</text>
+  <text class="label" x="330" y="54">In Bayer order</text>
+  <text class="small" x="386" y="220" text-anchor="middle">2 of 16</text><text class="small" x="520" y="220" text-anchor="middle">4 of 16</text><text class="small" x="654" y="220" text-anchor="middle">8 of 16</text><text class="small" x="788" y="220" text-anchor="middle">12 of 16</text><text class="small" x="922" y="220" text-anchor="middle">14 of 16</text><text class="small" x="1056" y="220" text-anchor="middle">16 of 16</text>
+  <text class="label" x="330" y="278">In reading order</text>
+  <text class="small" x="386" y="444" text-anchor="middle">2 of 16</text><text class="small" x="520" y="444" text-anchor="middle">4 of 16</text><text class="small" x="654" y="444" text-anchor="middle">8 of 16</text><text class="small" x="788" y="444" text-anchor="middle">12 of 16</text><text class="small" x="922" y="444" text-anchor="middle">14 of 16</text><text class="small" x="1056" y="444" text-anchor="middle">16 of 16</text>
+</svg>

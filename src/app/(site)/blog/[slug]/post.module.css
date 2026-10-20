@@ -1,0 +1,257 @@
+/* src/app/(site)/blog/[slug]/post.module.css */
+
+/* The reading measure is --prose (globals.css), in rem so the body and the
+   end mark share one edge. The header (DetailHeader, ui.module.css) runs
+   the full column, as a case study's does. */
+
+/* ---- Body: long-form reading ---- */
+.prose {
+  max-width: var(--prose);
+  font-size: var(--text-prose);
+  line-height: 1.75;
+}
+
+.prose > * + * {
+  margin-top: 1.25em;
+}
+
+.prose h2 {
+  font-size: var(--text-h2);
+  margin-top: 2.2em;
+}
+
+.prose h3 {
+  font-size: var(--text-h3);
+  margin-top: 1.9em;
+}
+
+.prose h2 + *,
+.prose h3 + * {
+  margin-top: 0.6em;
+}
+
+.prose a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+  transition: text-decoration-thickness 0.15s;
+}
+
+.prose a:hover {
+  text-decoration-thickness: 3px;
+}
+
+.prose strong {
+  font-weight: 600;
+}
+
+/* Lists: square pixel bullets, mono numerals. */
+.prose ul,
+.prose ol {
+  padding-left: 1.6em;
+}
+
+.prose li + li {
+  margin-top: 0.4em;
+}
+
+.prose ul {
+  list-style: none;
+}
+
+.prose ul > li {
+  position: relative;
+}
+
+.prose ul > li::before {
+  content: "";
+  position: absolute;
+  left: -1.15em;
+  top: 0.72em;
+  width: 6px;
+  height: 6px;
+  background: var(--color-accent);
+}
+
+.prose ol > li::marker {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  font-weight: 500;
+  color: var(--color-accent);
+}
+
+/* A quote hangs off a pixel bracket drawn in 4px steps. */
+.prose blockquote {
+  padding: 0.35em 0 0.35em 1.6em;
+  background:
+    linear-gradient(var(--color-accent), var(--color-accent)) 0 0 / 4px 100% no-repeat,
+    linear-gradient(var(--color-accent), var(--color-accent)) 0 0 / 12px 4px no-repeat,
+    linear-gradient(var(--color-accent), var(--color-accent)) 0 100% / 12px 4px no-repeat;
+  font-family: var(--font-display);
+  font-weight: var(--weight-display);
+  font-style: italic;
+  font-size: 1.4rem;
+  line-height: 1.45;
+}
+
+.prose blockquote p + p {
+  margin-top: 0.75em;
+}
+
+.prose code {
+  font-family: var(--font-mono);
+  font-size: 0.86em;
+  padding: 0.1em 0.35em;
+  background: color-mix(in srgb, var(--color-text) 7%, transparent);
+}
+
+/* Code blocks: a card on the 2px rule. The language rides on a
+   folder tab above the top edge, so it never covers a long first line. The
+   tab sits inside the wrapper's padding, so the focus ring goes round both. */
+.codeBlock {
+  --tab: 24px;
+  position: relative;
+}
+
+.tabbed {
+  padding-top: calc(var(--tab) - 2px);
+}
+
+.prose > .codeBlock {
+  margin-top: 1.4em;
+}
+
+.prose pre {
+  overflow-x: auto;
+  padding: 1.4rem 1.5rem;
+  border: var(--rule);
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-rest);
+}
+
+/* The ring goes round the wrapper, so the language tab sits inside it and
+   never covers its top edge. */
+.prose pre:focus-visible {
+  outline: none;
+}
+
+.codeBlock:has(pre:focus-visible) {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+}
+
+.prose pre code {
+  display: block;
+  padding: 0;
+  background: none;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+/* Its open bottom covers the block's top rule, so tab and card are one. */
+.codeLang {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  height: var(--tab);
+  padding: 0 10px;
+  border: var(--rule);
+  border-bottom: 0;
+  background-color: var(--color-surface);
+  line-height: 1;
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.prose img {
+  border: var(--rule);
+}
+
+/* A section break: three pixel squares. */
+.prose hr {
+  border: 0;
+  width: 42px;
+  height: 6px;
+  margin: 2.75em auto;
+  background: linear-gradient(
+    90deg,
+    var(--color-accent) 0 6px,
+    transparent 6px 18px,
+    var(--color-accent) 18px 24px,
+    transparent 24px 36px,
+    var(--color-accent) 36px 42px
+  );
+}
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+}
+
+.prose th,
+.prose td {
+  padding: 0.5em 0.75em;
+  border-bottom: 1px solid var(--color-border);
+  text-align: left;
+}
+
+.prose th {
+  border-bottom: var(--rule);
+  font-weight: 600;
+}
+
+/* ---- End ---- */
+.end {
+  max-width: var(--prose);
+  margin-top: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+/* The closing rule with the apple set in it. */
+.endMark {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.endMark::before,
+.endMark::after {
+  content: "";
+  flex: 1;
+  border-top: var(--rule);
+}
+
+.endMark svg {
+  display: block;
+}
+
+@media (max-width: 640px) {
+  .prose blockquote {
+    font-size: 1.25rem;
+  }
+
+  .prose pre {
+    padding: 1.2rem 1rem;
+    box-shadow: none;
+  }
+
+  /* Phones hide scrollbars, so a long line would just look cut off. Post
+     code is read, not copied to the column, so wrap it instead. */
+  .prose pre code {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+}

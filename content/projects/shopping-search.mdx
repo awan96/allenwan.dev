@@ -1,0 +1,70 @@
+---
+title: Shopping on Google Search
+summary: The layout and filters of Google Shopping's results page on Search, and the experiments behind its launches.
+role: Software Engineer III
+year: 2021 – 2025
+stack:
+  - Web Performance
+  - A/B Testing
+  - Java
+  - C++
+links: {}
+icon: icon_grid
+featured: true
+order: 4
+filler: false
+---
+
+I worked on Google Shopping's results page on Google Search: the results-page UI, its filters, the layout, and web performance. I worked on a complete shopping desktop redesign as the lead engineer and project owner from the US launch to its worldwide rollout.
+
+
+## The problem space
+
+Our team's scope encompasses the triggering of features, page structure, and ranking of all queries with shopping intent on Google Search, on mobile and desktop, with every market being different.
+The work was tested heavily with A/B experiments; launches had to pass strict latency review, and each locale got human side-by-side evaluations and user preference studies.
+The work involved finding the layout and controls that help users shop, measuring them in experiments, and rolling them out without breaking the content other features put on the page.
+
+## What I owned
+
+- Started the experiments for a full shopping desktop redesign in 2023, then led it as lead engineer and project owner from the US launch through the rollout to five more countries and most markets worldwide.
+- Designed and built the mobile All Filters panel, then re-architected it to load on tap across the frontend and the backend.
+- Reworked the results grid so non-product cards can sit among products, and designed the slot conflict resolution for cards from different teams.
+- Ran experiments across many launches, with factorial arms to isolate latency cost, long-term holdbacks, human side-by-side evaluations, and user preference studies.
+
+## The hard part
+
+**Information density.** On a big monitor, shopping results sat in a narrow column with empty space on one side and a cluttered side column on the other. Shopping and Search both wanted the desktop page fixed, because the shopping experience was inconsistent, the page was unbalanced, and the mixed content confused users. The redesign widened the results column, moved the product grid from four columns to five, removed the right-hand column, and gave web results one thumbnail style. The grid has to know before it renders whether it's on a wide page, so I added a layout signal from the backend, and the grid fetches and renders five columns only when the page really is wide. Removing the side column was risky, because it takes away content that other features depend on. I removed the side-column modules behind an exemption list, so a new side-column feature has to opt in before it appears on shopping pages. Earlier, in 2021, I reworked the core grid logic so non-product cards like suggestions can sit in the grid, and designed the slot conflict resolution that other grid features use.
+
+<Figure src="/projects/shopping-search/redesign.svg" alt="Wireframes of the desktop shopping results page before and after the redesign. Before, a narrow results column sits between wide empty space and a cluttered side column, with products four across and web results that have mixed thumbnails. After, a wide results column with even margins shows products five across, web results with one thumbnail style, and no side column." caption="The desktop page before and after the redesign. The wider results column fits five products across, and the side column is gone." />
+
+**Filters.** On mobile, filters were chips the user tapped one at a time, with no single place to see every filter. I took over the backend foundation for grouped refinements from another engineer and built the All Filters panel, including its entry point, the bottom sheet, the tooltip, and the logging. I validated it with staged A/B tests, UX research, and an in-product survey. Early versions added noticeable latency. I got that close to zero by lazy-loading images, deferring rendering, and swapping my homegrown bottom sheet for the shared component, and we launched in late 2022 with the richer filters cut. The trade-off was still there, richer filters or a faster page, so I re-architected the panel to open instantly with a placeholder and fetch its contents on tap, and changed the backend to build panel results only when asked. That launched in mid-2023 and let the richer filters ship. The same async pattern went into the desktop filter panel, which renders part of the panel and loads the rest on "See more."
+
+<Figure src="/projects/shopping-search/all-filters.webp" frame="phone" alt="A Google search for shoes on a phone in dark mode, with the All Filters panel open as a bottom sheet titled Refine your search, over the row of filter chips. Under the selected Men's filter, the filters sit in groups: Popular searches (On sale, Nearby, Get it by Fri, Small business, New, and Used), Style (Casual and Formal), and Features (Slip-on, For Athletics, Work, Fashion Sneaker, and Breathable)." caption="The All Filters panel on a phone in 2026. The button at the start of the filter chips opens it as a bottom sheet with the filters in groups." />
+
+**The shopping desktop redesign launch.** The redesign featured a wider page layout with more product cards per row, increasing the total products on the page by 20%. More products cost time, and the launch had to pass latency review. I designed experiment arms to isolate what each change cost, four columns against five and the filter panel in different placements. The product grid drove the frontend latency increase, so I built asynchronous loading for the desktop filter panel and merged it into the launch candidate. The US launch cleared latency review with page latency roughly neutral. The changes touched the frontend, the backend, and ads, which had to change together inside coordinated experiments, and I worked with ads engineering to adapt ad placement to the new layout. The redesign launched in the US in 2024, and a multi-month holdback confirmed the impact lasted. For each locale after that I ran A/B tests, human side-by-side evaluations, and large user preference studies, debugged one market's regressions through logging analysis, and worked through each market's ads setup. Five more countries launched in 2025 and most markets worldwide in 2026.
+
+<Figure src="/projects/shopping-search/desktop.webp" frame="browser" url="google.com/search?q=shoes" alt="A Google search for shoes on desktop in dark mode. Filter chips run along the top. A Refine results panel on the left lists Department, Color, Product Rating, and Athletic Style, with a See more link under the longer filters. Popular products fill a wide column five across, each with a photo, a price, a store, and a rating, and there is no column on the right." caption="The desktop results page in 2026, with products five across and no side column. The filter panel on the left renders the first few options of each filter and loads the rest on See more." />
+
+<Callout kind="decision" title="Side-column features have to opt in">
+
+Removing the side column takes away content that other features depend on, so the removal sits behind an exemption list. New side-column features have to opt in to show on shopping pages, so they can't silently break them.
+
+</Callout>
+
+## The result
+
+- Launched the shopping desktop redesign in the US in 2024, in five more countries in 2025, and in most markets worldwide in 2026.
+- Measured a clear preference for the redesign in large user preference studies, in the US and in all five countries of the first international launch.
+- Increased product engagement and click-through to merchant and publisher sites, with fewer query rewrites and tab switches overall.
+- Launched the mobile All Filters panel in late 2022 and the on-tap version in mid-2023, with the richer filters that had been cut at launch.
+- Launched in-grid suggestions in January 2022, with slot conflict resolution that other grid features use.
+
+## What I'd change
+
+Looking back at the many features I launched, I would have integrated asynchronous loading and other latency optimizations into the design. User latency is always a big negotiation for high-traffic, information-dense features. The most common trade-off pattern is between latency, feature completeness, and launch speed. Anticipating these trade-offs during the design phase means they can be discussed during planning instead of at latency review.
+
+<Callout kind="lesson" title="One change per arm on the expansion experiments">
+
+A series of incremental experiments extended the layout to broader shopping queries. They ran one change per arm, with intent thresholds and slice analysis on each, so they showed which query slices the wide layout hurt, and the expansion stayed off those.
+
+</Callout>

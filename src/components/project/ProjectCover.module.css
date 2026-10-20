@@ -1,0 +1,19 @@
+/* src/components/project/ProjectCover.module.css
+   A static frame, so it rests on ink, as figures do. */
+
+.cover {
+  display: flex;
+  border: var(--rule);
+  box-shadow: var(--shadow-rest);
+}
+
+.cover > * {
+  flex: 1;
+  min-width: 0;
+}
+
+.media {
+  display: block;
+  width: 100%;
+  height: auto;
+}

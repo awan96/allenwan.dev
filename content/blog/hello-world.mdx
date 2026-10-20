@@ -1,0 +1,38 @@
+---
+title: "Hello, world"
+description: "Why I added a blog to my portfolio, and how it works under the hood."
+date: "2026-07-05"
+tags: ["meta", "nextjs"]
+filler: true
+---
+
+Welcome to my blog! This is the first post, and fittingly, it's about how this blog itself works.
+
+## How it's built
+
+Every post is an MDX file living in `content/blog/` in the site's repo. At build time, Next.js reads the folder, parses each file's frontmatter, and statically generates a page per post. No CMS, no database — just files.
+
+Publishing a new post looks like this:
+
+1. Create a new `.mdx` file with a frontmatter block
+2. Write, in plain Markdown
+3. Commit and push
+
+```md
+---
+title: "My next post"
+description: "A one-line summary for the list page."
+date: "2026-07-12"
+tags: ["thoughts"]
+---
+
+Post content goes here.
+```
+
+## Why MDX?
+
+Because it's Markdown that can render React components. Most posts will be plain prose, but when I want an interactive demo or a custom chart inline, I can just drop a component into the post.
+
+> Own your content. Platforms come and go — a folder of Markdown files is forever.
+
+More posts soon.

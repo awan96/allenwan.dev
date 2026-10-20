@@ -1,0 +1,180 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1140 410" width="1140" height="410" role="img" aria-labelledby="t">
+  <title id="t">The figure shows Share to compare as three phone screens from left to right. First, another app's product page for a desk lamp, with its Share button circled. Second, the share sheet open over that page, showing the shared item at the top and below it a row of apps that runs off the right edge, with the Shopping tile circled in the middle of the row. Between the second and third screens, the shared title and link, Desk lamp and example.com/desk-lamp, go to the extension, which turns them into a search for desk lamp and passes it to the search screen. Third, the Shopping app loads on its search screen with desk lamp already in the search field.</title>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="18" markerHeight="18" markerUnits="userSpaceOnUse" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" class="head"/>
+    </marker>
+    <clipPath id="screen"><rect x="0" y="0" width="176" height="314" rx="24"/></clipPath>
+    <symbol id="lamp" viewBox="0 0 100 100" overflow="visible">
+      <rect class="lampln" x="26" y="84" width="40" height="8" rx="4"/>
+      <path class="lampln" d="M46,84 L31,54 L64,28"/>
+      <circle class="dotink" cx="31" cy="54" r="4"/>
+      <path class="lampln" d="M60,31 L68,25 L91,44 Q86,58 69,60 Z"/>
+    </symbol>
+    <symbol id="cart" viewBox="0 0 36 36">
+      <path class="cartln" d="M7,10 H11 L14,23 H26 L28.5,14 H12.2"/>
+      <circle class="cartdot" cx="16" cy="27.5" r="2"/>
+      <circle class="cartdot" cx="24.5" cy="27.5" r="2"/>
+    </symbol>
+    <!-- the other app's nav bar, drawn once for phones 1 and 2: back, a title bar, Share -->
+    <g id="navA">
+      <path class="ln" d="M24,37 L18,43 L24,49"/>
+      <rect class="bar" x="58" y="38" width="60" height="10" rx="3"/>
+      <g transform="translate(150,43)">
+        <path class="ln" d="M-5,-3 H-8 V8 H8 V-3 H5"/>
+        <path class="ln" d="M0,4 V-11 M-4.5,-6.5 L0,-11 L4.5,-6.5"/>
+      </g>
+    </g>
+  </defs>
+  <style>
+    :root { --ink: #1a1a18; --paper: #f6efdd; --accent: #2a5c45; --muted: #62625c; --soft: rgba(26,26,24,0.14); --bar: rgba(26,26,24,0.30); }
+    @media (prefers-color-scheme: dark) {
+      :root { --ink: #eeece6; --paper: #111110; --accent: #5aab80; --muted: #9c9c94; --soft: rgba(238,236,230,0.16); --bar: rgba(238,236,230,0.32); }
+    }
+    .paper { fill: var(--paper); }
+    .head { fill: var(--ink); }
+    .cap { font-family: "Sometype Mono", ui-monospace, Menlo, monospace; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; fill: var(--muted); }
+    .t   { font-family: "Karla", "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 15px; fill: var(--ink); }
+    .tf  { font-family: "Karla", "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 16px; fill: var(--ink); }
+    .tb  { font-family: "Karla", "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 15px; font-weight: 700; fill: var(--ink); }
+    .tq  { font-family: "Karla", "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 17px; font-weight: 700; fill: var(--ink); }
+    .tm  { font-family: "Karla", "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 15px; fill: var(--muted); }
+    .mono { font-family: "Sometype Mono", ui-monospace, Menlo, monospace; font-size: 16px; fill: var(--ink); }
+    .body { fill: var(--paper); stroke: var(--ink); stroke-width: 2; }
+    .rim { fill: none; stroke: var(--ink); stroke-width: 2; }
+    .ln { fill: none; stroke: var(--ink); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+    .lampln { fill: none; stroke: var(--ink); stroke-linejoin: round; stroke-linecap: round; }
+    .dotink { fill: var(--ink); }
+    .notch { fill: var(--muted); }
+    .soft { fill: var(--soft); }
+    .bar { fill: var(--bar); }
+    .scrim { fill: var(--soft); }
+    .sheet { fill: var(--paper); stroke: var(--ink); stroke-width: 2; }
+    .other { fill: none; stroke: var(--muted); stroke-width: 2.5; stroke-dasharray: 5 4; }
+    .app { fill: var(--accent); }
+    .cartln { fill: none; stroke: var(--paper); stroke-width: 2.2; stroke-linejoin: round; stroke-linecap: round; }
+    .cartdot { fill: var(--paper); }
+    .ring { fill: none; stroke: var(--accent); stroke-width: 3.5; }
+    .field { fill: var(--paper); stroke: var(--accent); stroke-width: 3.5; }
+    .raw { fill: var(--paper); stroke: var(--muted); stroke-width: 2; stroke-dasharray: 5 5; }
+    .query { fill: var(--paper); stroke: var(--ink); stroke-width: 3; }
+    .arrow { fill: none; stroke: var(--ink); stroke-width: 2; marker-end: url(#arrow); }
+    .rule { stroke: var(--soft); stroke-width: 2; }
+  </style>
+  <rect class="paper" x="0" y="0" width="1140" height="410"/>
+
+  <text class="cap" x="40" y="40">Share to compare, from any app to a Shopping search</text>
+
+  <!-- ============ 1. another app's product page ============ -->
+  <g transform="translate(40,66)">
+    <rect class="body" x="0" y="0" width="176" height="314" rx="24"/>
+    <g clip-path="url(#screen)">
+      <rect class="notch" x="66" y="10" width="44" height="6" rx="3"/>
+      <use xlink:href="#navA" href="#navA"/>
+      <rect class="soft" x="14" y="62" width="148" height="112" rx="8"/>
+      <use xlink:href="#lamp" href="#lamp" x="38" y="66" width="100" height="100" stroke-width="2.4"/>
+      <text class="tb" x="14" y="198">Desk lamp</text>
+      <rect class="bar" x="14" y="208" width="44" height="10" rx="3"/>
+      <rect class="soft" x="14" y="228" width="148" height="8" rx="3"/>
+      <rect class="soft" x="14" y="242" width="110" height="8" rx="3"/>
+      <rect class="soft" x="14" y="262" width="148" height="30" rx="15"/>
+      <rect class="notch" x="60" y="302" width="56" height="4" rx="2"/>
+    </g>
+    <circle class="ring" cx="150" cy="43" r="17"/>
+  </g>
+
+  <!-- ============ 2. the share sheet ============ -->
+  <g transform="translate(350,66)">
+    <rect class="body" x="0" y="0" width="176" height="314" rx="24"/>
+    <g clip-path="url(#screen)">
+      <!-- the page behind, faded: its nav and the top of its picture card, no product drawn -->
+      <g opacity="0.35">
+        <use xlink:href="#navA" href="#navA"/>
+        <rect class="soft" x="14" y="62" width="148" height="112" rx="8"/>
+      </g>
+      <rect class="scrim" x="0" y="0" width="176" height="314"/>
+      <rect class="sheet" x="0" y="110" width="176" height="230" rx="16"/>
+      <rect class="notch" x="72" y="118" width="32" height="4" rx="2"/>
+      <rect class="soft" x="14" y="132" width="36" height="36" rx="6"/>
+      <use xlink:href="#lamp" href="#lamp" x="18" y="134" width="30" height="30" stroke-width="6"/>
+      <text class="tb" x="60" y="147">Desk lamp</text>
+      <text class="tm" x="60" y="165">example.com</text>
+      <line class="rule" x1="14" y1="180" x2="162" y2="180"/>
+      <!-- the row of apps: Shopping second, the row cut off by the screen edge -->
+      <rect class="other" x="14" y="192" width="36" height="36" rx="9"/>
+      <rect class="app" x="64" y="192" width="36" height="36" rx="9"/>
+      <use xlink:href="#cart" href="#cart" x="64" y="192" width="36" height="36"/>
+      <rect class="other" x="114" y="192" width="36" height="36" rx="9"/>
+      <rect class="other" x="164" y="192" width="36" height="36" rx="9"/>
+      <rect class="bar" x="24" y="245" width="16" height="6" rx="3"/>
+      <text class="t" x="82" y="254" text-anchor="middle">Shopping</text>
+      <rect class="bar" x="124" y="245" width="16" height="6" rx="3"/>
+      <rect class="soft" x="14" y="266" width="148" height="28" rx="8"/>
+      <rect class="notch" x="60" y="302" width="56" height="4" rx="2"/>
+    </g>
+    <rect class="rim" x="0" y="0" width="176" height="314" rx="24"/>
+    <rect class="ring" x="58" y="186" width="48" height="48" rx="14"/>
+  </g>
+
+  <!-- ============ 3. Shopping, on its search screen ============ -->
+  <g transform="translate(924,66)">
+    <rect class="body" x="0" y="0" width="176" height="314" rx="24"/>
+    <g clip-path="url(#screen)">
+      <rect class="notch" x="66" y="10" width="44" height="6" rx="3"/>
+      <rect class="app" x="14" y="31" width="24" height="24" rx="6"/>
+      <use xlink:href="#cart" href="#cart" x="14" y="31" width="24" height="24"/>
+      <text class="tb" x="46" y="48">Shopping</text>
+      <rect class="field" x="14" y="64" width="148" height="34" rx="17"/>
+      <circle class="ln" cx="32" cy="79" r="5.5"/>
+      <path class="ln" d="M36,83 L40,87"/>
+      <text class="tf" x="48" y="87">desk lamp</text>
+      <rect class="soft" x="14" y="112" width="70" height="52" rx="6"/>
+      <rect class="soft" x="92" y="112" width="70" height="52" rx="6"/>
+      <use xlink:href="#lamp" href="#lamp" x="28" y="114" width="44" height="44" stroke-width="4.4"/>
+      <use xlink:href="#lamp" href="#lamp" x="106" y="114" width="44" height="44" stroke-width="4.4"/>
+      <rect class="bar" x="14" y="172" width="50" height="7" rx="3"/>
+      <rect class="soft" x="14" y="184" width="34" height="7" rx="3"/>
+      <rect class="bar" x="92" y="172" width="50" height="7" rx="3"/>
+      <rect class="soft" x="92" y="184" width="34" height="7" rx="3"/>
+      <rect class="soft" x="14" y="204" width="70" height="52" rx="6"/>
+      <rect class="soft" x="92" y="204" width="70" height="52" rx="6"/>
+      <use xlink:href="#lamp" href="#lamp" x="28" y="206" width="44" height="44" stroke-width="4.4"/>
+      <use xlink:href="#lamp" href="#lamp" x="106" y="206" width="44" height="44" stroke-width="4.4"/>
+      <rect class="bar" x="14" y="264" width="50" height="7" rx="3"/>
+      <rect class="soft" x="14" y="276" width="34" height="7" rx="3"/>
+      <rect class="bar" x="92" y="264" width="50" height="7" rx="3"/>
+      <rect class="soft" x="92" y="276" width="34" height="7" rx="3"/>
+      <rect class="notch" x="60" y="302" width="56" height="4" rx="2"/>
+    </g>
+  </g>
+
+  <!-- ============ the steps between ============ -->
+  <!-- where the leader leaves phone 1, the rim breaks under it -->
+  <rect class="paper" x="214" y="106" width="4" height="6"/>
+
+  <!-- tap Share: the share sheet slides up -->
+  <path class="arrow" d="M209,109 H283 V216 H340"/>
+  <text class="t" x="283" y="98" text-anchor="middle">tap Share</text>
+
+  <!-- tap Shopping: leaves phone 2 level with the Shopping label, below the tile row and clear of the cut-off tile -->
+  <path class="arrow" d="M528,315 H642"/>
+  <text class="t" x="589" y="303" text-anchor="middle">tap Shopping</text>
+
+  <!-- what was shared: the title and the link, as the share sheet showed them -->
+  <rect class="raw" x="648" y="286" width="228" height="58" rx="8"/>
+  <text class="t" x="762" y="309" text-anchor="middle">Desk lamp</text>
+  <text class="mono" x="762" y="332" text-anchor="middle">example.com/desk-lamp</text>
+  <text class="tm" x="762" y="368" text-anchor="middle">a link or text from any app</text>
+
+  <!-- turned into a search -->
+  <path class="arrow" d="M703,282 V169"/>
+  <text class="tm" x="689" y="221" text-anchor="end">the extension parses</text>
+  <text class="tm" x="689" y="239" text-anchor="end">it into a search</text>
+
+  <rect class="query" x="648" y="129" width="110" height="36" rx="8"/>
+  <text class="tq" x="703" y="153" text-anchor="middle">desk lamp</text>
+
+  <!-- passed to the search screen, already filled in -->
+  <path class="arrow" d="M762,147 H914"/>
+  <text class="tm" x="840" y="136" text-anchor="middle">to the search screen</text>
+</svg>

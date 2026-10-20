@@ -1,0 +1,351 @@
+/* src/components/site/HeroScene.module.css
+   The hero diorama's frame. The sky's bands and the headline's colours live
+   here, keyed on html[data-sky] (stamped before first paint), so the right
+   sky shows before the canvas mounts; the canvas reads the bands and the
+   scale back from these same properties.
+
+   Text colours per sky were measured against every band and cloud that can
+   sit behind the text: body text 4.5:1 or better, the accent 3:1 or better
+   (it is only ever used large). In the dark colour scheme every sky is a
+   dimmed one, so the hero never glares next to a dark page. */
+
+.scene {
+  /* CSS px per scene pixel, the site's --art-px (globals.css); the canvas
+     reads it back. */
+  --px: var(--art-px);
+  --layout: side;
+
+  /* The ground's pre-mount colours, the same greens as scene/palettes.ts. */
+  --grass-edge: #3f7a5c;
+  --grass: #2a5c45;
+  --ground-ink: #1a1a18;
+
+  /* Pinned where it sits, under the sticky nav (HeroScene.tsx measures
+     --nav-h), while the game card rises over it; then it lets go
+     (docs/HOME_SCROLL.md §4). */
+  position: sticky;
+  top: var(--nav-h, 0px);
+  z-index: 0;
+  overflow: hidden;
+  isolation: isolate;
+  background-color: var(--sky-b2);
+  /* Before the canvas: flat bands at BAND_STOPS (scene/draw.ts), then
+     grass, the ink line and the soil. Once mounted, the canvas moves the
+     seams into the open sky above and below the words. */
+  background-image:
+    linear-gradient(var(--grass-edge), var(--grass-edge)),
+    linear-gradient(var(--grass), var(--grass)),
+    linear-gradient(var(--ground-ink), var(--ground-ink)),
+    linear-gradient(var(--color-soil), var(--color-soil)),
+    linear-gradient(
+      to bottom,
+      var(--sky-b0) 0 30%,
+      var(--sky-b1) 30% 55%,
+      var(--sky-b2) 55% 74%,
+      var(--sky-b3) 74% 88%,
+      var(--sky-b4) 88%
+    );
+  background-size:
+    100% var(--px),
+    100% calc(var(--px) * 4),
+    100% var(--px),
+    100% calc(var(--px) * 7),
+    100% calc(100% - var(--px) * 12);
+  background-position:
+    left 0 bottom calc(var(--px) * 11),
+    left 0 bottom calc(var(--px) * 8),
+    left 0 bottom calc(var(--px) * 7),
+    left 0 bottom 0,
+    left 0 top 0;
+  background-repeat: no-repeat;
+}
+
+/* Day, the fallback when data-sky is missing. */
+.scene,
+.probe[data-probe="day"] {
+  --sky-b0: #9fc6d4;
+  --sky-b1: #b0d0db;
+  --sky-b2: #c2dadf;
+  --sky-b3: #d4e4e1;
+  --sky-b4: #e3ece2;
+  --sky-text: #1a1a18;
+  --sky-muted: #33454a;
+  --sky-accent: #2a5c45;
+  --sky-on-accent: #f6efdd;
+}
+
+:global(html[data-sky="dawn"]) .scene,
+.probe[data-probe="dawn"] {
+  --sky-b0: #b7aed0;
+  --sky-b1: #cdb5cf;
+  --sky-b2: #e3bfc6;
+  --sky-b3: #f1cdb9;
+  --sky-b4: #f7e0bf;
+  --sky-text: #1a1a18;
+  --sky-muted: #43384a;
+  --sky-accent: #2a5c45;
+  --sky-on-accent: #f6efdd;
+}
+
+:global(html[data-sky="dusk"]) .scene,
+.probe[data-probe="dusk"] {
+  --sky-b0: #2c2d4f;
+  --sky-b1: #3f3560;
+  --sky-b2: #523c66;
+  --sky-b3: #6a4468;
+  --sky-b4: #a65a66;
+  --sky-text: #f6efdd;
+  --sky-muted: #e6dbe6;
+  --sky-accent: #a6d9ba;
+  --sky-on-accent: #16161a;
+}
+
+:global(html[data-sky="night"]) .scene,
+.probe[data-probe="night"] {
+  --sky-b0: #0f1624;
+  --sky-b1: #131d2e;
+  --sky-b2: #182438;
+  --sky-b3: #1d2c43;
+  --sky-b4: #24354e;
+  --sky-text: #f3eee0;
+  --sky-muted: #cdcabf;
+  --sky-accent: #9fd3b4;
+  --sky-on-accent: #111110;
+}
+
+/* Golden hour, which the blends into dawn and dusk pass through. Nothing
+   rests on it, so data-sky never names it and the headline never sits on
+   it: only its probe carries its bands (docs/HOME_SCROLL.md §3.6). */
+.probe[data-probe="golden"] {
+  --sky-b0: #6b5c87;
+  --sky-b1: #965a7d;
+  --sky-b2: #b1605e;
+  --sky-b3: #c26e46;
+  --sky-b4: #c9892b;
+}
+
+@media (prefers-color-scheme: dark) {
+  .scene,
+  .probe[data-probe="day"] {
+    --sky-b0: #1f3542;
+    --sky-b1: #25404d;
+    --sky-b2: #2c4a56;
+    --sky-b3: #34545d;
+    --sky-b4: #3d5d62;
+    --sky-text: #eeece6;
+    --sky-muted: #cfd6d6;
+    --sky-accent: #93d3b0;
+    --sky-on-accent: #111110;
+  }
+
+  :global(html[data-sky="dawn"]) .scene,
+  .probe[data-probe="dawn"] {
+    --sky-b0: #2a2640;
+    --sky-b1: #3a2f4a;
+    --sky-b2: #4b3850;
+    --sky-b3: #5d4352;
+    --sky-b4: #6f5055;
+    --sky-text: #eeece6;
+    --sky-muted: #ded4dc;
+    --sky-accent: #9fd3b4;
+    --sky-on-accent: #111110;
+  }
+
+  :global(html[data-sky="dusk"]) .scene,
+  .probe[data-probe="dusk"] {
+    --sky-b0: #221f3a;
+    --sky-b1: #302849;
+    --sky-b2: #452f51;
+    --sky-b3: #5e3853;
+    --sky-b4: #83464f;
+    --sky-text: #eeece6;
+    --sky-muted: #ded4dc;
+    --sky-accent: #9fd3b4;
+    --sky-on-accent: #111110;
+  }
+
+  :global(html[data-sky="night"]) .scene,
+  .probe[data-probe="night"] {
+    --sky-b0: #0b111c;
+    --sky-b1: #0f1725;
+    --sky-b2: #131d2e;
+    --sky-b3: #172438;
+    --sky-b4: #1c2b42;
+    --sky-text: #eeece6;
+    --sky-muted: #c9c6bb;
+    --sky-accent: #9fd3b4;
+    --sky-on-accent: #111110;
+  }
+
+  .probe[data-probe="golden"] {
+    --sky-b0: #251f31;
+    --sky-b1: #3a2230;
+    --sky-b2: #492727;
+    --sky-b3: #583424;
+    --sky-b4: #64451c;
+  }
+}
+
+/* Sized before it mounts, or it first lays out at the default 300×150 and
+   the resize reads as a layout shift. The engine's inline size wins once it
+   runs; no `top`, so the ground stays anchored to the bottom. */
+.canvas {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  display: block;
+  image-rendering: pixelated;
+  pointer-events: none;
+}
+
+/* The text sits on the site's column, so the headline lines up with the
+   nav's logo. */
+.inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding: 72px var(--gutter) calc(var(--px) * 12 + 72px);
+  min-height: clamp(500px, 68vh, 580px);
+  /* svh where it's known: iOS resizes vh as its address bar comes and goes,
+     which would resize the pinned hero mid-scroll and rebuild the scene. */
+  min-height: clamp(500px, 68svh, 580px);
+  display: flex;
+  align-items: center;
+}
+
+/* fit-content, so the scene can measure where the words really end and
+   keep the tree clear of them. The site's own tokens follow the sky, so
+   the button and the quiet link read on a night sky as well as a day one. */
+.text {
+  width: fit-content;
+  max-width: min(100%, 36rem);
+  --color-text: var(--sky-text);
+  --color-muted: var(--sky-muted);
+  --color-accent: var(--sky-accent);
+  --color-bg: var(--sky-on-accent);
+  /* --rule is resolved on :root, so it has to be restated here to follow
+     the sky: the button's edge matches its hover shadow on every sky. */
+  --rule: 2px solid var(--sky-text);
+  /* Fade out as the page scrolls, and move up as the scene falls. */
+  opacity: clamp(0, calc(1 - var(--scroll-p, 0) * 3.5), 1);
+  transform: translateY(calc(var(--scroll-p, 0) * -3rem));
+}
+
+.text :focus-visible {
+  outline-color: var(--sky-text);
+}
+
+.scene[data-faded] .text {
+  pointer-events: none;
+}
+
+/* Reduced motion: no pin and no scrubbing. The hero scrolls away with the
+   page as it always has, on its resting picture. */
+@media (prefers-reduced-motion: reduce) {
+  .scene {
+    position: relative;
+    top: auto;
+  }
+}
+
+/* The apple's hit area: a transparent button over the apple, placed by the
+   scene. Bigger than the apple so a thumb can find it. */
+.appleBtn {
+  position: absolute;
+  z-index: 2;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.appleBtn:focus-visible {
+  outline: 2px solid var(--sky-text);
+  outline-offset: 0;
+}
+
+/* Mid-fall the button already sits where the apple will land; it keeps
+   focus but shows no ring, and takes no clicks, until the apple is there. */
+.appleBtn[data-falling] {
+  pointer-events: none;
+}
+
+.appleBtn[data-falling]:focus-visible {
+  outline-color: transparent;
+}
+
+/* The whisper: a paper tag over the tree, the same in every sky. */
+.whisper {
+  position: absolute;
+  z-index: 2;
+  transform: translate(-50%, -100%);
+  padding: 5px 10px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.4;
+  white-space: nowrap;
+  color: #1a1a18;
+  background: #fffdf8;
+  border: 1.5px solid #1a1a18;
+  box-shadow: 3px 3px 0 #1a1a18;
+  animation: whisper-in 0.3s steps(3, end) both;
+}
+
+/* A three-step pixel caret under the tag, pointing at the tree. */
+.whisper::after {
+  content: "";
+  position: absolute;
+  top: calc(100% + 1.5px);
+  left: calc(50% - 5px);
+  width: 10px;
+  height: 6px;
+  background:
+    linear-gradient(#1a1a18, #1a1a18) 0 0 / 10px 2px no-repeat,
+    linear-gradient(#1a1a18, #1a1a18) 2px 2px / 6px 2px no-repeat,
+    linear-gradient(#1a1a18, #1a1a18) 4px 4px / 2px 2px no-repeat;
+}
+
+.whisper:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.whisper:focus-visible {
+  outline: 2px solid var(--sky-text);
+  outline-offset: 4px;
+}
+
+@keyframes whisper-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, calc(-100% + 6px));
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -100%);
+  }
+}
+
+/* The scale steps with --art-px: 6px from 1400 (so the tree holds its own
+   next to a 70px headline), 5px from 1100, 4px, and 3px on phones. */
+
+/* Phones: the text on top, the tree under it on its knoll. */
+@media (max-width: 639px) {
+  .scene {
+    --layout: stacked;
+  }
+  /* Room under the text for the tree (29 rows), its knoll, the ground
+     (12) and the whisper tag above the canopy. */
+  .inner {
+    min-height: 0;
+    padding-top: 44px;
+    padding-bottom: calc(var(--px) * 68);
+    align-items: flex-start;
+  }
+}

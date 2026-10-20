@@ -1,0 +1,156 @@
+/* src/components/project/ProjectCard.module.css */
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: var(--rule);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+/* The keyboard gets the same lift the mouse does, on top of the ring. */
+.card:hover,
+.card:focus-visible {
+  transform: var(--lift);
+  box-shadow: var(--shadow-lift);
+}
+
+.card:active {
+  transform: none;
+  box-shadow: none;
+}
+
+.body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 1.4rem 1.4rem 1.25rem;
+}
+
+.top {
+  margin-bottom: 1.15rem;
+}
+
+/* Scoped, so it never meets the Filler primitive at equal weight. */
+.card .filler {
+  position: absolute;
+  top: 1.1rem;
+  right: 1.1rem;
+}
+
+.meta {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  line-height: 1.45;
+  color: var(--color-muted);
+  margin-bottom: 0.4rem;
+}
+
+.title {
+  font-size: var(--text-h3);
+  line-height: 1.15;
+  margin-bottom: 0.55rem;
+}
+
+.summary {
+  font-size: var(--text-small);
+  line-height: 1.6;
+  color: var(--color-muted);
+  margin-bottom: 1.3rem;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+}
+
+/* The stack and the arrow share the bottom edge, so every card in a row
+   ends on the same line however long its summary runs. */
+.foot {
+  margin-top: auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.go {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-size: 1.25rem;
+  line-height: 1;
+  color: var(--color-accent);
+  transition: transform 0.15s;
+}
+
+.card:hover .go,
+.card:focus-visible .go {
+  transform: translateX(4px);
+}
+
+/* ---- The flagship row ----
+   It rests on the same green shadow as the game block on the home page.
+   On lift the shadow grows by the lift, so its far edge stays put. */
+.feature {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  box-shadow: 6px 6px 0 var(--color-accent);
+}
+
+.feature:hover,
+.feature:focus-visible {
+  box-shadow: 9px 9px 0 var(--color-accent);
+}
+
+.art {
+  display: flex;
+  border-right: var(--rule);
+}
+
+.art > * {
+  flex: 1;
+}
+
+.feature .body {
+  padding: 2rem 2rem 1.75rem;
+  justify-content: center;
+}
+
+.feature .title {
+  font-size: clamp(1.9rem, 4vw, 2.5rem);
+  margin-bottom: 0.7rem;
+}
+
+.feature .summary {
+  font-size: 15.5px;
+  max-width: 46ch;
+  margin-bottom: 1.6rem;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+}
+
+.feature .foot {
+  margin-top: 0;
+}
+
+@media (max-width: 720px) {
+  .feature {
+    grid-template-columns: 1fr;
+  }
+  .art {
+    border-right: none;
+    border-bottom: var(--rule);
+  }
+  .feature .body {
+    padding: 1.4rem 1.25rem 1.3rem;
+  }
+}

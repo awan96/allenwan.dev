@@ -1,0 +1,151 @@
+/* src/components/site/ExperienceTimeline.module.css */
+
+/* ---- A rail of square nodes, years on the left ---- */
+.experience {
+  --years: 9rem;
+  --rail: calc(var(--years) + 1.5rem);
+}
+
+.timeline {
+  list-style: none;
+}
+
+.job {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--years) minmax(0, 1fr);
+  column-gap: 3rem;
+  padding-bottom: 2.25rem;
+}
+
+/* A folded row is still in the page, so its grid mustn't outrank hidden. */
+.job[hidden] {
+  display: none;
+}
+
+/* The rail, one segment per row so it starts and ends on a node. */
+.job::before {
+  content: "";
+  position: absolute;
+  left: calc(var(--rail) - 1px);
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--color-text);
+}
+
+.job::after {
+  content: "";
+  position: absolute;
+  left: calc(var(--rail) - 7px);
+  top: 7px;
+  width: 14px;
+  height: 14px;
+  background: var(--color-bg);
+  border: 2px solid var(--color-text);
+}
+
+.job:first-child::before {
+  top: 7px;
+}
+
+/* The fold is only ever shown as the last row, so it always ends the rail. */
+.job:last-child,
+.fold {
+  padding-bottom: 0;
+}
+
+.job:last-child::before,
+.fold::before {
+  bottom: auto;
+  height: 7px;
+}
+
+/* The current row's node is filled; "now" in its years says the same. */
+.job:first-child::after {
+  background: var(--color-accent);
+}
+
+/* The folded row's node is two squares, stacked: several roles in one. */
+.fold::after {
+  box-shadow: 4px 4px 0 -2px var(--color-bg), 4px 4px 0 0 var(--color-text);
+}
+
+.years {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 28px;
+  color: var(--color-muted);
+  white-space: nowrap;
+}
+
+.jobBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.role {
+  font-size: 1.4rem;
+  line-height: 28px;
+}
+
+/* The heading's balanced wrap evens the role's line against the company's,
+   and Vollkorn's wider role could then split ("Software Engineer /
+   Intern · Facebook"); the role stays whole wherever it fits a line. */
+@media (min-width: 400px) {
+  .roleName {
+    white-space: nowrap;
+  }
+}
+
+.org {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  /* Body weight, not the heading's (--weight-display) it sits in. */
+  font-weight: 400;
+  color: var(--color-muted);
+}
+
+.note {
+  font-size: 15px;
+  color: var(--color-muted);
+  max-width: 60ch;
+}
+
+/* "Show all four" sits where a note would. */
+.toggle {
+  align-self: flex-start;
+}
+
+/* "Fold the internships", under the last row, lined up with the roles. */
+.after {
+  margin-top: 1.1rem;
+  padding-left: calc(var(--years) + 3rem);
+}
+
+@media (max-width: 640px) {
+  /* The rail moves to the left edge; years sit above each role. */
+  .experience {
+    --rail: 7px;
+  }
+
+  .job {
+    grid-template-columns: minmax(0, 1fr);
+    padding-left: 2rem;
+  }
+
+  /* The org takes its own line, so a long one never leaves the dot
+     hanging at the end of the role's. */
+  .org {
+    display: block;
+  }
+
+  .dot {
+    display: none;
+  }
+
+  .after {
+    padding-left: 2rem;
+  }
+}

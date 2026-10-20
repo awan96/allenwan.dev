@@ -1,0 +1,63 @@
+/* src/components/project/Callout.module.css
+   Every kind rests on the same ink shadow, as every static frame does; the
+   word and the glyph say which kind it is, and the glyph's colour only
+   repeats it. */
+
+.callout {
+  --kind: var(--color-accent);
+
+  border: var(--rule);
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-rest);
+  padding: 1.15rem 1.4rem 1.3rem;
+}
+
+.lesson {
+  --kind: var(--color-honey);
+}
+
+.tradeoff {
+  --kind: var(--color-text);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.55rem;
+}
+
+/* 11 art pixels at 2× = 22px: whole pixels, crisp. */
+.glyph {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  color: var(--kind);
+}
+
+.word {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1;
+  color: var(--color-text);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: var(--weight-display);
+  font-size: var(--text-h3);
+  line-height: 1.25;
+  margin-bottom: 0.45rem;
+}
+
+.body {
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.body > * + * {
+  margin-top: 0.8em;
+}

@@ -1,0 +1,96 @@
+/* src/components/project/NextProject.module.css */
+
+.next {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.6rem 1.75rem;
+  border: var(--rule);
+  background-color: var(--color-surface);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.next:hover,
+.next:focus-visible {
+  transform: var(--lift);
+  box-shadow: var(--shadow-lift);
+}
+
+.next:active {
+  transform: none;
+  box-shadow: none;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+/* Scoped under the link, so it outranks the Filler primitive's own tilt
+   (ui.module.css) whatever order the build loads the sheets in. */
+.next .filler {
+  transform: rotate(-1.5deg);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: var(--weight-display);
+  font-size: clamp(1.6rem, 4vw, 2.1rem);
+  line-height: 1.15;
+  /* A long word ("Personalization", 186px at 1.6rem) outgrows a 320px
+     phone's 162px column, and browsers won't hyphenate a capitalised word,
+     so the title steps down there; the break is a last resort. */
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 360px) {
+  .title {
+    font-size: 1.35rem;
+  }
+}
+
+.summary {
+  max-width: 60ch;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--color-muted);
+}
+
+.arrow {
+  font-size: 1.8rem;
+  line-height: 1;
+  color: var(--color-accent);
+  transition: transform 0.15s;
+}
+
+.next:hover .arrow,
+.next:focus-visible .arrow {
+  transform: translateX(5px);
+}
+
+@media (max-width: 560px) {
+  .next {
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 1rem 1.1rem;
+    padding: 1.25rem 1.15rem;
+    align-items: start;
+  }
+  .arrow {
+    display: none;
+  }
+}

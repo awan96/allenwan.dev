@@ -1,0 +1,58 @@
+/* src/components/project/Stats.module.css */
+
+.stats {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  border: var(--rule);
+  background-color: var(--color-surface);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  gap: 0.35rem;
+  padding: 1.35rem 1.4rem 1.3rem;
+}
+
+.stat + .stat {
+  border-left: var(--rule);
+}
+
+.value {
+  font-family: var(--font-display);
+  font-weight: var(--weight-display);
+  font-size: clamp(2.3rem, 5vw, 2.9rem);
+  line-height: 1;
+  color: var(--color-accent);
+  font-variant-numeric: lining-nums;
+}
+
+.label {
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--color-muted);
+  max-width: 24ch;
+}
+
+@media (max-width: 560px) {
+  .stats {
+    grid-auto-flow: row;
+    grid-auto-columns: auto;
+  }
+  .stat {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 1rem 1.15rem;
+  }
+  .stat + .stat {
+    border-left: none;
+    border-top: var(--rule);
+  }
+  .value {
+    min-width: 3.2ch;
+  }
+}
